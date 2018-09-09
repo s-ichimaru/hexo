@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dojo Toolkit チュートリアル | Tech-Tutorial</title>
+  <meta name="author" content="Satoshi Ichimaru">
+  
+  <meta name="description" content="DojoとはオープンソースのJavaScriptライブラリーの1つで、クロスブラウザに対応したJavaScript/Ajaxアプリケーションを迅速に開発するために設計されている。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Dojo Toolkit チュートリアル"/>
+  <meta property="og:site_name" content="Tech-Tutorial"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/hexo-site/favicon.png" rel="icon">
+  <link rel="alternate" href="/hexo-site/atom.xml" title="Tech-Tutorial" type="application/atom+xml">
+  <link rel="stylesheet" href="/hexo-site/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/hexo-site/">Tech-Tutorial</a></h1>
+  <h2><a href="/hexo-site/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/hexo-site/">Home</a></li>
+    
+      <li><a href="/hexo-site/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-09-09T11:19:05.000Z"><a href="/hexo-site/2018/09/09/dojo-tutorial/">2018-09-09</a></time>
+      
+      
+  
+    <h1 class="title">Dojo Toolkit チュートリアル</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Dojoとは"><a href="#Dojoとは" class="headerlink" title="Dojoとは"></a>Dojoとは</h2><p>オープンソースのJavaScriptライブラリーの1つで、<br>クロスブラウザに対応したJavaScript/Ajaxアプリケーションを迅速に開発するために設計されている。</p>
+<a id="more"></a>
+<h2 id="Dojoコンポーネント"><a href="#Dojoコンポーネント" class="headerlink" title="Dojoコンポーネント"></a>Dojoコンポーネント</h2><p>Dojo（Base）<br>　コアパッケージ<br>  ・DOMの検索と操作<br>  ・DOMのイベントハンドリング<br>  ・エフェクトとアニメーション<br>  ・Ajaxとサーバー連携<br>  ・ドラッグ・アンド・ドロップ<br>  ・I/O<br>  ・データ管理<br>  ・国際化対応 (i8n)<br>  ・ブラウザーの履歴管理</p>
+<p>Dijit<br>　Dojo上に構成されたUIライブラリ<br>　・Webアプリケーションの迅速な開発を支援するウィジェットのコレクション<br>　・再利用可能なコンポーネントは、わずかのHTML、JavaScript、CSSで作成できる<br>　・アプリケーション全体で一貫性のあるUXを提供し、カスタマイズ可能<br>　・メジャーブラウザーサポート</p>
+<p>Dojox<br>　サブプロジェクトを集めたライブラリ<br>　実験用機能が含まれるため、あまり実用性はない（中には安定している機能はあるらしい）<br>　<br>Util<br>　サポートツール　<br>　・コードのビルド<br>　・テスト<br>　・文書化<br>　など<br>　<br>AMD（Asynchronous Module Definition)<br>　モジュールローダー<br>  dojoではすべての機能を読み込むのではなく、必要に応じて利用するための仕組み
+　</p>
+<h2 id="Dojo-Base-チュートリアル"><a href="#Dojo-Base-チュートリアル" class="headerlink" title="Dojo Base チュートリアル"></a>Dojo Base チュートリアル</h2><p>サンプルソースは以下を参照<br><a href="https://github.com/s-ichimaru/tutorial/tree/master/dojo" title="dojo-tutorial" target="_blank" rel="noopener">dojo-tutorial</a></p>
+<p>1.Dojoスクリプトの読み込みとonload<br>  ・ 1_1_ready.html</p>
+<p>2.CSSセレクタの利用方法<br>  ・ 1_2_domquery.html</p>
+<p>3.AMDの利用<br>  ・ 1_3_amd.html</p>
+<p>4.イベント処理（ONイベント)<br>  ・ 1_4_on.html</p>
+<p>5.マウスイベント処理（mouseイベント)<br>  ・ 1_5_mouse.html</p>
+<p>6.DOMスタイル操作<br>  ・ 1_6_domstyle.html</p>
+<p>7.DOMクラス操作<br>  ・ 1_7_domclass.html</p>
+<p>8.DOM構築<br>  ・ 1_8_domconstruct.html</p>
+<p>9.イベントハンドラ<br>  ・ 1_9_eventhandle.html</p>
+<p>10.イベント委譲<br>  ・ 1_10_event_delegations.html</p>
+<h2 id="Dijit-チュートリアル"><a href="#Dijit-チュートリアル" class="headerlink" title="Dijit チュートリアル"></a>Dijit チュートリアル</h2><p>1.Dijit Button(dom parser)<br>  ・ 2_1_dijit_button1.html</p>
+<p>2.Dijit Button(dynamic create)<br>  ・ 2_2_dijit_button2.html</p>
+<p>3.Dijit Buttons(Component Types)<br>  ・ 2_3_dijit_button3.html</p>
+<p>4.Dijit TextBoxs(Component Types)<br>  ・ 2_4_dijit_textbox1.html</p>
+<p>5.Dijit TextBoxs(dijit/registry)<br>  ・ 2_5_dijit_textbox2.html</p>
+<p>6.Dijit Select or Combo(Component Types)<br>  ・ 2_6_dijit_select.html</p>
+<h2 id="その他調査"><a href="#その他調査" class="headerlink" title="その他調査"></a>その他調査</h2><p>1.関数オーバーライド<br>  ex1_override.html</p>
+<p>2.closet<br>  ex2_closest.html</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/hexo-site/tags/Dojo-Toolkit/">Dojo Toolkit</a>, <a href="/hexo-site/tags/チュートリアル/">チュートリアル</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:s-ichimaru.github.io/hexo-site">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/hexo-site/tags/Dojo-Toolkit/">Dojo Toolkit</a><small>1</small></li>
+  
+    <li><a href="/hexo-site/tags/チュートリアル/">チュートリアル</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 Satoshi Ichimaru
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/hexo-site/js/jquery.imagesloaded.min.js"></script>
+<script src="/hexo-site/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
