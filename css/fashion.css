@@ -15,7 +15,10 @@ Tags: black, white, two-columns, fixed-layout, threaded-comments, full-width-tem
 ----------------------------------------------- */
 body {
 	color: #333;
+/*	
 	font-family: 'Helvetica Neue','Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	line-height: 1.8;
 	background: #fff;
 	}
@@ -24,8 +27,11 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	margin: 1.25em 0 .5em;
 	font-weight: 400;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
-	line-height: 1.2em;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+
 	}
 h1 {
 	font-size: 16px;
@@ -137,6 +143,10 @@ input[type="submit"] {
 	font-size: 1.2em;
 	font-weight: 300;
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+
+/*
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+*/
 	line-height: 26px;
 	text-transform: uppercase;
 	background: #333;
@@ -262,6 +272,10 @@ object {
 	margin: 0;
 	font-size: 48px;
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+
+/*
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+*/	
 	text-transform: uppercase;
 	line-height: 1em;
 	}
@@ -273,7 +287,11 @@ object {
 	margin-bottom: 20px;
 	color: #a6a6a6;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	}
@@ -342,6 +360,10 @@ object {
 	display: block;
 	font-weight: 400;
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+
+/*
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+*/	
 	text-decoration: none;
 	text-transform: uppercase;
 	}
@@ -612,7 +634,10 @@ object {
 	color: #a6a6a6;
 	font-size: .9em;
 	font-weight: 300;
+/*	
 	font-family: Oswald,"Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/	
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	}
 .entry-meta a {
@@ -715,7 +740,10 @@ body.search .page .entry-footer {
 	margin: 0 20px 0 0;
 	color: #a6a6a6;
 	font-size: .9em;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 	letter-spacing: 2px;
@@ -788,7 +816,10 @@ body.search .page .entry-footer {
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 	line-height: 26px;
@@ -823,7 +854,10 @@ body.search .page .entry-footer {
 	display: block;
 	color: #a6a6a6;
 	font-size: 1.3em;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	}
 .site-content .post-navigation .meta-nav {
@@ -884,7 +918,10 @@ body.search .page .entry-footer {
 .comment-list li.comment .comment-author .fn {
 	color: #999;
 	font-size: 1.2em;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	}
 .comment-list li.comment .comment-author .fn a {
@@ -901,7 +938,10 @@ body.search .page .entry-footer {
 	color: #a6a6a6;
 	font-size: .9em;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 	}
@@ -915,7 +955,10 @@ body.search .page .entry-footer {
 	color: #a6a6a6;
 	font-size: .9em;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 	}
@@ -948,7 +991,10 @@ body.search .page .entry-footer {
 	}
 #commentform label {
 	color: #a6a6a6;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	}
@@ -1017,6 +1063,10 @@ ul.widget-tab-nav {
 	color: #a6a6a6;
 	font-size: 1.1em;
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+
+/*
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
+*/	
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	line-height: 30px;
@@ -1073,7 +1123,10 @@ ul.widget-tab-nav {
 	color: #a6a6a6;
 	font-size: .875em;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	}
 .widget-entry-content h4,
@@ -1094,7 +1147,10 @@ ul.widget-tab-nav {
 	padding: 0 0 15px;
 	font-size: .9em;
 	font-weight: 300;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	line-height: 1.8;
 	}
@@ -1238,7 +1294,10 @@ ul.widget-tab-nav {
 	padding: 20px;
 	color: #a6a6a6;
 	font-size: .875em;
+/*	
 	font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+*/
+	font-family: "游ゴシック体", YuGothic, "YuGothic M", sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	background: #333;
