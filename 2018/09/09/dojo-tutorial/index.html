@@ -1,69 +1,138 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Dojo Toolkit チュートリアル | Tech-Tutorial</title>
-  <meta name="author" content="Satoshi Ichimaru">
-  
-  <meta name="description" content="DojoとはオープンソースのJavaScriptライブラリーの1つで、クロスブラウザに対応したJavaScript/Ajaxアプリケーションを迅速に開発するために設計されている。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Dojo Toolkit チュートリアル"/>
-  <meta property="og:site_name" content="Tech-Tutorial"/>
-
   
-    <meta property="og:image" content=""/>
+  <meta name="keywords" content="Dojo Toolkitチュートリアル" />
   
+  
+  
+  
+  <meta name="keywords" content="Dojo Toolkit,チュートリアル">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dojo Toolkit チュートリアル">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/2018/09/09/dojo-tutorial/2018-09-12_16h40_09.jpg">
+<meta property="og:updated_time" content="2018-09-12T07:45:38.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dojo Toolkit チュートリアル">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/2018/09/09/dojo-tutorial/2018-09-12_16h40_09.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-  <link href="/hexo-site/favicon.png" rel="icon">
-  <link rel="alternate" href="/hexo-site/atom.xml" title="Tech-Tutorial" type="application/atom+xml">
-  <link rel="stylesheet" href="/hexo-site/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
 
 </head>
 
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/hexo-site/">Tech-Tutorial</a></h1>
-  <h2><a href="/hexo-site/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/hexo-site/">Home</a></li>
-    
-      <li><a href="/hexo-site/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-09-09T11:19:05.000Z"><a href="/hexo-site/2018/09/09/dojo-tutorial/">2018-09-09</a></time>
-      
-      
-  
-    <h1 class="title">Dojo Toolkit チュートリアル</h1>
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
   
 
-    </header>
-    <div class="entry">
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-dojo-tutorial" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018/09/09/dojo-tutorial/2018-09-12_16h40_09.jpg" rel="gallery_cjlyvyhyd0002pstsilslnae4">
+        <img src="/hexo-site/2018/09/09/dojo-tutorial/2018-09-12_16h40_09.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Dojo Toolkit チュートリアル
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
       
-        <img src="/hexo-site/2018/09/09/dojo-tutorial/dojo.png" title="dojo">
+	<a href="/hexo-site/2018/09/09/dojo-tutorial/" class="article-date">
+	  <time datetime="2018-09-09T11:19:05.000Z" itemprop="datePublished">September 9, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　<br><a id="more"></a></p>
 <h2 id="Dojoとは"><a href="#Dojoとは" class="headerlink" title="Dojoとは"></a>Dojoとは</h2><p>オープンソースのJavaScriptライブラリーの1つで、<br>クロスブラウザに対応したJavaScript/Ajaxアプリケーションを迅速に開発するために設計されている。</p>
-<a id="more"></a>
 <h2 id="Dojoコンポーネント"><a href="#Dojoコンポーネント" class="headerlink" title="Dojoコンポーネント"></a>Dojoコンポーネント</h2><p>Dojo（Base）<br>　コアパッケージ<br>  ・DOMの検索と操作<br>  ・DOMのイベントハンドリング<br>  ・エフェクトとアニメーション<br>  ・Ajaxとサーバー連携<br>  ・ドラッグ・アンド・ドロップ<br>  ・I/O<br>  ・データ管理<br>  ・国際化対応 (i8n)<br>  ・ブラウザーの履歴管理</p>
 <p>Dijit<br>　Dojo上に構成されたUIライブラリ<br>　・Webアプリケーションの迅速な開発を支援するウィジェットのコレクション<br>　・再利用可能なコンポーネントは、わずかのHTML、JavaScript、CSSで作成できる<br>　・アプリケーション全体で一貫性のあるUXを提供し、カスタマイズ可能<br>　・メジャーブラウザーサポート</p>
 <p>Dojox<br>　サブプロジェクトを集めたライブラリ<br>　実験用機能が含まれるため、あまり実用性はない（中には安定している機能はあるらしい）<br>　<br>Util<br>　サポートツール　<br>　・コードのビルド<br>　・テスト<br>　・文書化<br>　など<br>　<br>AMD（Asynchronous Module Definition)<br>　モジュールローダー<br>　dojoではすべての機能を読み込むのではなく、必要に応じて利用するための仕組み
@@ -90,120 +159,155 @@
 
       
     </div>
-    <footer>
+    <footer class="entry-meta entry-footer">
       
-        
-  
-  <div class="categories">
-    <a href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/hexo-site/tags/Dojo-Toolkit/">Dojo Toolkit</a>, <a href="/hexo-site/tags/チュートリアル/">チュートリアル</a>
-  </div>
-
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a>
 
       
-      <div class="clearfix"></div>
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Dojo-Toolkit/">Dojo Toolkit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/チュートリアル/">チュートリアル</a></li></ul>
+
+      
+        
+
+      
     </footer>
+    <hr class="entry-footer-hr">
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IntelliJ IDEAを試してみる
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
 
+<!-- Table of Contents -->
 
-<section id="comment">
-  <h1 class="title">Comments</h1>
-
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
-      
-  
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dojoとは"><span class="nav-number">1.</span> <span class="nav-text">Dojoとは</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dojoコンポーネント"><span class="nav-number">2.</span> <span class="nav-text">Dojoコンポーネント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dojo-Base-チュートリアル"><span class="nav-number">3.</span> <span class="nav-text">Dojo Base チュートリアル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijit-チュートリアル"><span class="nav-number">4.</span> <span class="nav-text">Dijit チュートリアル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#その他調査"><span class="nav-number">5.</span> <span class="nav-text">その他調査</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
+        
+      </div>
 
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:s-ichimaru.github.io/hexo-site">
-  </form>
-</div>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
 
-  
-<div class="widget tag">
-  <h3 class="title">Categories</h3>
-  <ul class="entry">
-  
-    <li><a href="/hexo-site/categories/Dojo-Toolkit/">Dojo Toolkit</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/hexo-site/tags/Dojo-Toolkit/">Dojo Toolkit</a><small>1</small></li>
-  
-    <li><a href="/hexo-site/tags/チュートリアル/">チュートリアル</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-</aside>
-    <div class="clearfix"></div>
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2018 Satoshi Ichimaru
-  
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/hexo-site/js/jquery.imagesloaded.min.js"></script>
-<script src="/hexo-site/js/gallery.js"></script>
+</footer>
 
 
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
 
 
-<link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
 </body>
 </html>
