@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>はじめてのAWS：②料金見積 | Tech-Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="クラウドAWS" />
+  
+  
+  
+  
+  <meta name="keywords" content="クラウド,AWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="はじめてのAWS：②料金見積">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
+<meta property="og:updated_time" content="2018-09-15T19:43:29.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="はじめてのAWS：②料金見積">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-aws-20180916-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" rel="gallery_cjm3qke2q0006potsi2e2rmam">
+        <img src="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      はじめてのAWS：②料金見積
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/hexo-site/2018/09/16/aws-20180916-1/" class="article-date">
+	  <time datetime="2018-09-15T17:20:38.000Z" itemprop="datePublished">September 16, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　</p>
+<a id="more"></a>
+<p style="color:red">※※※　知識不足のため、改訂の可能性は高いです　※※※</p>
+
+<p><br></p>
+<h2 id="利用料金の試算"><a href="#利用料金の試算" class="headerlink" title="利用料金の試算"></a>利用料金の試算</h2><p><a href="https://aws.amazon.com/jp/how-to-understand-pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/how-to-understand-pricing/</a></p>
+<p>利用料金について大きなズレがないか確認するために試算を行う。</p>
+<p><br></p>
+<h2 id="システム構成"><a href="#システム構成" class="headerlink" title="システム構成"></a>システム構成</h2><p>公式で提示されている構成例を参考に試算する。</p>
+<p>Windows Server 社内業務アプリ環境移行のためのクラウド構成例<br><a href="https://aws.amazon.com/jp/cdp/windows-bizapp-migration/" target="_blank" rel="noopener">https://aws.amazon.com/jp/cdp/windows-bizapp-migration/</a></p>
+<p><img src="https://d1.awsstatic.com/icons/jp/cdp/cdp-windows-bizapp-migration_v2.25a1a75c1eddb4eb02e813cd4c378dfd10bd723e.png" alt=""></p>
+<p>予約金（年一回）：＄2,775.05<br>月額　　　　　　：＄371.42</p>
+<p>上記の構成から本番機、検証機とインスタンスを分け、DBはSQL Server Express、<br>本番の使用率は１００％（365日/24時間稼働）、検証機は１０％、<br>データのダウンロードについては、月間10GBを想定とする。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">環境</th>
+<th style="text-align:left">サービス</th>
+<th style="text-align:left">設定</th>
+<th style="text-align:left"></th>
+<th style="text-align:left">使用率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">本番</td>
+<td style="text-align:left">EC2</td>
+<td style="text-align:left">OS</td>
+<td style="text-align:left">Windows Server</td>
+<td style="text-align:left">100%</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">インスタンスタイプ</td>
+<td style="text-align:left">r4.large</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">vCPU</td>
+<td style="text-align:left">2コア</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">メモリ</td>
+<td style="text-align:left">15.25G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">EBS</td>
+<td style="text-align:left">タイプ</td>
+<td style="text-align:left">Amazon EBS 汎用 SSD (gp2)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ストレージ</td>
+<td style="text-align:left">160G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">RDS</td>
+<td style="text-align:left">DB</td>
+<td style="text-align:left">SQL Server Express</td>
+<td style="text-align:left">100%</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">インスタンスタイプ</td>
+<td style="text-align:left">db.t2.medium</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">vCPU</td>
+<td style="text-align:left">2コア</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">メモリ</td>
+<td style="text-align:left">4G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ストレージ</td>
+<td style="text-align:left">80G（汎用SSD）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">検証</td>
+<td style="text-align:left">EC2</td>
+<td style="text-align:left">OS</td>
+<td style="text-align:left">Windows Server</td>
+<td style="text-align:left">10%</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">インスタンスタイプ</td>
+<td style="text-align:left">r4.large</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">vCPU</td>
+<td style="text-align:left">2コア</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">メモリ</td>
+<td style="text-align:left">15.25G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">EBS</td>
+<td style="text-align:left">タイプ</td>
+<td style="text-align:left">Amazon EBS 汎用 SSD (gp2)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ストレージ</td>
+<td style="text-align:left">160G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">RDS</td>
+<td style="text-align:left">DB</td>
+<td style="text-align:left">SQL Server Express</td>
+<td style="text-align:left">10%</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">インスタンスタイプ</td>
+<td style="text-align:left">db.t2.medium</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">vCPU</td>
+<td style="text-align:left">2コア</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">メモリ</td>
+<td style="text-align:left">4G</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ストレージ</td>
+<td style="text-align:left">80G（汎用SSD）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">共通</td>
+<td style="text-align:left">VPC</td>
+<td style="text-align:left">VPN接続数</td>
+<td style="text-align:left">１</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">S3</td>
+<td style="text-align:left">ストレージ</td>
+<td style="text-align:left">240G（本番バックアップ）</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">サポート</td>
+<td style="text-align:left">ビジネスプラン</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="見積り"><a href="#見積り" class="headerlink" title="見積り"></a>見積り</h2><p>簡易見積りツール<br><a href="http://calculator.s3.amazonaws.com/index.html?lng=ja_JP" target="_blank" rel="noopener">http://calculator.s3.amazonaws.com/index.html?lng=ja_JP</a></p>
+<h3 id="EC2＆ESB"><a href="#EC2＆ESB" class="headerlink" title="EC2＆ESB"></a>EC2＆ESB</h3><p><img src="http://drive.google.com/uc?export=view&amp;id=166s9L0xtDjLbc3OhmRWMqdHBzZGnDfVa" alt=""><br><img src="http://drive.google.com/uc?export=view&amp;id=1THxIBaXR0eFyzUq42shz_LRC0XL3Xms5" alt=""></p>
+<h3 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h3><p>アップロード（バックアップ）は無料のため設定なし<br><img src="http://drive.google.com/uc?export=view&amp;id=1pGby8vubkuj6jWAu2qEsud8TKpQ_KQ0l" alt=""></p>
+<h3 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h3><p><img src="http://drive.google.com/uc?export=view&amp;id=1ix00JvmhRvyDVktCYhtVfe5i0LlnW-l_" alt=""></p>
+<h3 id="VPC"><a href="#VPC" class="headerlink" title="VPC"></a>VPC</h3><p><img src="http://drive.google.com/uc?export=view&amp;id=12vFz7mRRWSTcZW84dVAePnkIj89pYG4M" alt=""></p>
+<h3 id="サポート"><a href="#サポート" class="headerlink" title="サポート"></a>サポート</h3><p><img src="http://drive.google.com/uc?export=view&amp;id=1FeLchnMgGcTlTjNy_ry5wpuL7Wd7YdPR" alt=""></p>
+<h3 id="見積り結果"><a href="#見積り結果" class="headerlink" title="見積り結果"></a>見積り結果</h3><p><img src="http://drive.google.com/uc?export=view&amp;id=158_sYq50dY-YFP-Xr9d2_xrB1kj8Wg2f" alt=""></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/クラウド/">クラウド</a></li></ul>
+
+      
+        
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexo-site/2018/09/15/aws-20180915-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">はじめてのAWS：①AWS概要</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用料金の試算"><span class="nav-number">1.</span> <span class="nav-text">利用料金の試算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#システム構成"><span class="nav-number">2.</span> <span class="nav-text">システム構成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#見積り"><span class="nav-number">3.</span> <span class="nav-text">見積り</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EC2＆ESB"><span class="nav-number">3.1.</span> <span class="nav-text">EC2＆ESB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S3"><span class="nav-number">3.2.</span> <span class="nav-text">S3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDS"><span class="nav-number">3.3.</span> <span class="nav-text">RDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPC"><span class="nav-number">3.4.</span> <span class="nav-text">VPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#サポート"><span class="nav-number">3.5.</span> <span class="nav-text">サポート</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#見積り結果"><span class="nav-number">3.6.</span> <span class="nav-text">見積り結果</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+</body>
+</html>
