@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>はじめてのAWS：①AWS概要 | Tech-Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="クラウドAWS" />
+  
+  
+  
+  
+  <meta name="keywords" content="クラウド,AWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="はじめてのAWS：①AWS概要">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
+<meta property="og:updated_time" content="2018-09-15T15:47:21.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="はじめてのAWS：①AWS概要">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-aws-20180915-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" rel="gallery_cjm365l130000psts60cnd80q">
+        <img src="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      はじめてのAWS：①AWS概要
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/hexo-site/2018/09/15/aws-20180915-1/" class="article-date">
+	  <time datetime="2018-09-15T08:27:38.000Z" itemprop="datePublished">September 15, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　</p>
+<a id="more"></a>
+<h2 id="AWSとは"><a href="#AWSとは" class="headerlink" title="AWSとは"></a>AWSとは</h2><blockquote><p>Amazon Web Services（アマゾン ウェブ サービス、AWS）とは、Amazon.comにより提供されているクラウドコンピューティングサービス（ウェブサービス）である。これらのサービスは全世界で18の地域に提供されている（2018年現在）。AWSの有名なサービスにAmazon Elastic Compute Cloud (EC2) とAmazon Simple Storage Service (S3) がある。これまでのクライアントが保有していた物理的なサーバファームと比較してAWSは大規模な計算処理能力を速やかに提供出来ることが強みである。</p>
+<footer><strong>wikipedia,</strong><cite><a href="https://ja.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" rel="noopener">ja.wikipedia.org/wiki/Amazon_Web_Services</a></cite></footer></blockquote>
+<p><br></p>
+<p><hr></p>
+<h2 id="AWSサービス概要"><a href="#AWSサービス概要" class="headerlink" title="AWSサービス概要"></a>AWSサービス概要</h2><p><img src="http://drive.google.com/uc?export=view&amp;id=1vNskji1g-ZDjyBGm0JAQpsP4aNz_ailY" alt=""></p>
+<p>少々古い情報だが見やすいので参考にさせてもらった。<br>参考：<a href="http://www.so-net.ne.jp/solution/service/idc/aws.html" target="_blank" rel="noopener">http://www.so-net.ne.jp/solution/service/idc/aws.html</a></p>
+<p>非常にサービスが多いため、主要となるインフラ部分を重点的に整理することにする。<br><br></p>
+<!--
+=========================================================== 
+  コンピューティング 
+=========================================================== 
+-->
+<p><hr></p>
+<h2 id="コンピューティング"><a href="#コンピューティング" class="headerlink" title="コンピューティング"></a>コンピューティング</h2><p><br></p>
+<h3 id="Amazon-EC2：仮想サーバ"><a href="#Amazon-EC2：仮想サーバ" class="headerlink" title="Amazon EC2：仮想サーバ"></a>Amazon EC2：仮想サーバ</h3><p><a href="https://aws.amazon.com/jp/ec2/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ec2/</a></p>
+<p>Amazon Elastic Compute Cloud (Amazon EC2) は、<br>安全でサイズ変更可能なコンピューティング性能をクラウド内で提供するウェブサービス。<br>アプリケーションのニーズに応じて自動的なスケールアップ、スケールダウンを数分以内に実現可能。</p>
+<p><strong>料金体系</strong><br>・オンデマントインスタンス（従量課金制）<br>長期的な契約無しにコンピューティングの性能に対して料金を支払う。</p>
+<p>・リザーブドインスタンス（1年または3年契約の前払い）<br>オンデマントインスタンスの料金に比べて大幅な割引（最大７５％）が受けれる。</p>
+<p>・スポットインスタンス<br>入札式で余ったリソースを使うためオンデマンドよりも安い。<br>需要と供給により価格が変動するため、入札価格が変動価格を上回れば「強制的に削除」される。<br>大量のコンピューティング容量を必要としながら、緊急性は低い場合に便利なオプション。</p>
+<p><strong>料金表</strong><br><a href="https://aws.amazon.com/jp/ec2/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ec2/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-Elastic-Container-Service：コンテナ管理サービス"><a href="#Amazon-Elastic-Container-Service：コンテナ管理サービス" class="headerlink" title="Amazon Elastic Container Service：コンテナ管理サービス"></a>Amazon Elastic Container Service：コンテナ管理サービス</h3><p><a href="https://aws.amazon.com/jp/ecs/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ecs/</a></p>
+<p>Amazon Elastic Container Service (ECS) は、<br>Docker コンテナをサポートするスケーラビリティに優れた高性能なコンテナ管理サービス。<br>コンテナ化されたアプリケーションをAWSで簡単に実行およびスケールが可能。</p>
+<p><strong>料金体系</strong><br>・Fargate起動タイプモデル<br>コンテナ化されたアプリケーションに必要なvCPU（仮想CPU）とメモリリソースで金額がかかる</p>
+<p>・FC2起動タイプ<br>追加料金は発生しない。<br>アプリケーションを保存、実行するために作成したAWSリソース（FC2インスタンス、<br>FBSボリュームなど）に対して料金が発生する。</p>
+<p><strong>料金表</strong><br><a href="https://aws.amazon.com/jp/ecs/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ecs/pricing/</a></p>
+<!--
+=========================================================== 
+  ストレージ
+=========================================================== 
+-->
+<p><hr></p>
+<h2 id="ストレージ"><a href="#ストレージ" class="headerlink" title="ストレージ"></a>ストレージ</h2><p><br></p>
+<h3 id="Amazon-S3：オンラインストレージサービス"><a href="#Amazon-S3：オンラインストレージサービス" class="headerlink" title="Amazon S3：オンラインストレージサービス"></a>Amazon S3：オンラインストレージサービス</h3><p><a href="https://aws.amazon.com/jp/s3/" target="_blank" rel="noopener">https://aws.amazon.com/jp/s3/</a></p>
+<p>Amazon Simple Storage Service(Amazon S3) とは、<br>Amazon Web Services によって提供されるオンラインストレージのWebサービス。<br>Amazon S3は、Webサービスのインタフェースを介してストレージを提供している。<br>保存できるデータ容量、ファイル数に制約はないが、従量課金のため使った分だけ料金が発生する。</p>
+<p><strong>料金表</strong><br><a href="https://aws.amazon.com/jp/s3/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/s3/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-EBS：EC2インスタンスのストレージ"><a href="#Amazon-EBS：EC2インスタンスのストレージ" class="headerlink" title="Amazon EBS：EC2インスタンスのストレージ"></a>Amazon EBS：EC2インスタンスのストレージ</h3><p><a href="https://aws.amazon.com/jp/ebs/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ebs/</a></p>
+<p>Amazon Elastic Block Store (Amazon EBS) は、AWS クラウドの Amazon EC2 インスタンス<br>で使用する永続的なブロックレベルのストレージボリュームを提供する。</p>
+<p><strong>料金体系</strong><br>・Amazon EBS 汎用 SSD (gp2) ボリューム<br>・Amazon EBS プロビジョンド IOPS SSD (io1) ボリューム　<br>・Amazon EBS スループット最適化 HDD (st1) ボリューム<br>・Amazon EBS Cold HDD (sc1) ボリューム<br>　プロビジョニング（リソース割り当て）した容量 (GB/月) で決まり、<br>　そのストレージを解放するまで毎月料金が発生する。</p>
+<p>・Amazon S3 に対する Amazon EBS スナップショット<br>　Amazon S3とのデータ転送による料金を支払う。</p>
+<p><strong>料金表</strong><br><a href="https://aws.amazon.com/jp/ebs/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/ebs/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-EFS：ファイルストレージ"><a href="#Amazon-EFS：ファイルストレージ" class="headerlink" title="Amazon EFS：ファイルストレージ"></a>Amazon EFS：ファイルストレージ</h3><p><a href="https://aws.amazon.com/jp/efs/" target="_blank" rel="noopener">https://aws.amazon.com/jp/efs/</a></p>
+<p>Amazon Elastic File System（Amazon EFS）とは、AWS上で使用できる共有ファイルストレージ。<br>AWS上で複数のEC2インスタンスから共有ファイルストレージを使用したい場合に利用する。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/efs/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/efs/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-Glacier：低コストファイルストレージ"><a href="#Amazon-Glacier：低コストファイルストレージ" class="headerlink" title="Amazon Glacier：低コストファイルストレージ"></a>Amazon Glacier：低コストファイルストレージ</h3><p>頻繁に使用されないデータ（コールドデータ）に最適化された低コスト、高耐久性を備えたストレージサービスで、データのアーカイブや長期バックアップに使用できる。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/glacier/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/glacier/pricing/</a></p>
+<!--
+=========================================================== 
+  データベース
+=========================================================== 
+-->
+<p><hr></p>
+<h2 id="データベース"><a href="#データベース" class="headerlink" title="データベース"></a>データベース</h2><p><br></p>
+<h3 id="Amazon-RDS：リレーショナルデータベースサービス"><a href="#Amazon-RDS：リレーショナルデータベースサービス" class="headerlink" title="Amazon RDS：リレーショナルデータベースサービス"></a>Amazon RDS：リレーショナルデータベースサービス</h3><p><a href="https://aws.amazon.com/jp/rds/" target="_blank" rel="noopener">https://aws.amazon.com/jp/rds/</a></p>
+<p>Amazon Relational Database Service (Amazon RDS) を使用すると、<br>クラウド内のリレーショナルデータベースのセットアップ、運用、スケールを行うことが可能。<br>データベースの種類と利用時間で料金を支払う。<br>Amazon Aurora、PostgreSQL、MySQL、MariaDB、Oracle、Microsoft SQL Server の<br>6 つの使い慣れたデータベースエンジンから選択可能。<br>Amazon Auroraとは、MySQL および PostgreSQL と互換性のあるリレーショナルデータベースエンジン。</p>
+<p><strong><em>DBインスタンスクラス</em></strong><br><a href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html</a></p>
+<p><strong><em>料金体系</em></strong><br>オンデマンドインスタンス or リザーブドインスタンス</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/rds/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/rds/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-DynamoDB：NoSQLデータベースサービス"><a href="#Amazon-DynamoDB：NoSQLデータベースサービス" class="headerlink" title="Amazon DynamoDB：NoSQLデータベースサービス"></a>Amazon DynamoDB：NoSQLデータベースサービス</h3><p><a href="https://aws.amazon.com/jp/dynamodb/" target="_blank" rel="noopener">https://aws.amazon.com/jp/dynamodb/</a></p>
+<p>NoSQL（Key-Valueストア）によるデータベースサービス。<br>RDBMSに比べて大量のデータを扱うことができる。<br>（ビックデータの解析、情報のリアルタイム処理など）</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/dynamodb/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/dynamodb/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-ElastiCache：インメモリデータベースサービス"><a href="#Amazon-ElastiCache：インメモリデータベースサービス" class="headerlink" title="Amazon ElastiCache：インメモリデータベースサービス"></a>Amazon ElastiCache：インメモリデータベースサービス</h3><p><a href="https://aws.amazon.com/jp/elasticache/" target="_blank" rel="noopener">https://aws.amazon.com/jp/elasticache/</a></p>
+<p>フルマネージドな分散インメモリデータベースストらサービス<br>キャッシュエンジンとしてmemcachedとRedisがサポートされている。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/elasticache/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/elasticache/pricing/</a></p>
+<!--
+=========================================================== 
+  ネットワーク＆ルーティング
+=========================================================== 
+-->
+<p><hr></p>
+<h2 id="ネットワーク＆ルーティング"><a href="#ネットワーク＆ルーティング" class="headerlink" title="ネットワーク＆ルーティング"></a>ネットワーク＆ルーティング</h2><p><br></p>
+<h3 id="Amazon-VPC：仮想プライベートクラウド"><a href="#Amazon-VPC：仮想プライベートクラウド" class="headerlink" title="Amazon VPC：仮想プライベートクラウド"></a>Amazon VPC：仮想プライベートクラウド</h3><p><a href="https://aws.amazon.com/jp/vpc/" target="_blank" rel="noopener">https://aws.amazon.com/jp/vpc/</a></p>
+<p>Amazon Virtual Private Cloud (Amazon VPC) により<br>AWSリソースをユーザー定義の仮想ネットワークで起動できる。<br>独自のIPアドレス範囲の選択、サブネットの作成、ルートテーブル、<br>ネットワークゲートウェイの設定など、仮想ネットワーク環境を完全にコントロール可能。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/vpc/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/vpc/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-Elastic-Load-Balancing：ロードバランサ"><a href="#Amazon-Elastic-Load-Balancing：ロードバランサ" class="headerlink" title="Amazon Elastic Load Balancing：ロードバランサ"></a>Amazon Elastic Load Balancing：ロードバランサ</h3><p><a href="https://aws.amazon.com/jp/elasticloadbalancing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/elasticloadbalancing/</a></p>
+<p>Elastic Load Balancing は、アプリケーションへのトラフィックを<br>複数のターゲット (Amazon EC2 インスタンス、コンテナ、IP アドレスなど) に自動的に分散する。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/elasticloadbalancing/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/elasticloadbalancing/pricing/</a></p>
+<p><br></p>
+<h3 id="Amazon-Route-53：クラウドDNSサーバ"><a href="#Amazon-Route-53：クラウドDNSサーバ" class="headerlink" title="Amazon Route 53：クラウドDNSサーバ"></a>Amazon Route 53：クラウドDNSサーバ</h3><p><a href="https://aws.amazon.com/jp/route53/" target="_blank" rel="noopener">https://aws.amazon.com/jp/route53/</a></p>
+<p>Amazon Route 53 は、可用性と拡張性に優れたドメインネームシステム (DNS) ウェブサービス。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/route53/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/route53/pricing/</a></p>
+<p><br></p>
+<h3 id="AWS-Direct-Connect：専用線接続サービス"><a href="#AWS-Direct-Connect：専用線接続サービス" class="headerlink" title="AWS Direct Connect：専用線接続サービス"></a>AWS Direct Connect：専用線接続サービス</h3><p><a href="https://aws.amazon.com/jp/directconnect/" target="_blank" rel="noopener">https://aws.amazon.com/jp/directconnect/</a></p>
+<p>AWS Direct Connect を使用するとAWS とデータセンター、オフィス、<br>またはコロケーション環境間にプライベート接続を確立することができる。</p>
+<p><strong><em>料金表</em></strong><br><a href="https://aws.amazon.com/jp/directconnect/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/jp/directconnect/pricing/</a></p>
+<p><br><br><br><br><br><br><br></p>
+<!--
+=========================================================== 
+  参考資料
+=========================================================== 
+-->
+<p><hr></p>
+<h2 id="参考資料"><a href="#参考資料" class="headerlink" title="参考資料"></a>参考資料</h2><p>Amazon Web Service<br><a href="https://aws.amazon.com/jp/" target="_blank" rel="noopener">https://aws.amazon.com/jp/</a></p>
+<p>アマゾンウェブサービスの概要<br><a href="https://d1.awsstatic.com/International/ja_JP/Whitepapers/aws-overview.pdf" target="_blank" rel="noopener">https://d1.awsstatic.com/International/ja_JP/Whitepapers/aws-overview.pdf</a></p>
+<p>[初心者向け]AWSで開発環境を構築しよう<br><a href="https://www.slideshare.net/AmazonWebServicesJapan/webinar-aws" target="_blank" rel="noopener">https://www.slideshare.net/AmazonWebServicesJapan/webinar-aws</a></p>
+<p>【2018年】AWS全サービスまとめ その1（コンピューティング、ストレージ、データベース、移行、ネットワーキング ＆ コンテンツ配信）<br><a href="https://dev.classmethod.jp/cloud/aws/aws-summary-2018-1/" target="_blank" rel="noopener">https://dev.classmethod.jp/cloud/aws/aws-summary-2018-1/</a></p>
+<p>So-netソリューションサービス<br><a href="http://www.so-net.ne.jp/solution/service/idc/aws.html" target="_blank" rel="noopener">http://www.so-net.ne.jp/solution/service/idc/aws.html</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/クラウド/">クラウド</a></li></ul>
+
+      
+        
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IntelliJ IDEAを試してみる</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AWSとは"><span class="nav-number">1.</span> <span class="nav-text">AWSとは</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWSサービス概要"><span class="nav-number">2.</span> <span class="nav-text">AWSサービス概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンピューティング"><span class="nav-number">3.</span> <span class="nav-text">コンピューティング</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EC2：仮想サーバ"><span class="nav-number">3.1.</span> <span class="nav-text">Amazon EC2：仮想サーバ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Elastic-Container-Service：コンテナ管理サービス"><span class="nav-number">3.2.</span> <span class="nav-text">Amazon Elastic Container Service：コンテナ管理サービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ストレージ"><span class="nav-number">4.</span> <span class="nav-text">ストレージ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-S3：オンラインストレージサービス"><span class="nav-number">4.1.</span> <span class="nav-text">Amazon S3：オンラインストレージサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EBS：EC2インスタンスのストレージ"><span class="nav-number">4.2.</span> <span class="nav-text">Amazon EBS：EC2インスタンスのストレージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EFS：ファイルストレージ"><span class="nav-number">4.3.</span> <span class="nav-text">Amazon EFS：ファイルストレージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Glacier：低コストファイルストレージ"><span class="nav-number">4.4.</span> <span class="nav-text">Amazon Glacier：低コストファイルストレージ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#データベース"><span class="nav-number">5.</span> <span class="nav-text">データベース</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-RDS：リレーショナルデータベースサービス"><span class="nav-number">5.1.</span> <span class="nav-text">Amazon RDS：リレーショナルデータベースサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-DynamoDB：NoSQLデータベースサービス"><span class="nav-number">5.2.</span> <span class="nav-text">Amazon DynamoDB：NoSQLデータベースサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-ElastiCache：インメモリデータベースサービス"><span class="nav-number">5.3.</span> <span class="nav-text">Amazon ElastiCache：インメモリデータベースサービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワーク＆ルーティング"><span class="nav-number">6.</span> <span class="nav-text">ネットワーク＆ルーティング</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-VPC：仮想プライベートクラウド"><span class="nav-number">6.1.</span> <span class="nav-text">Amazon VPC：仮想プライベートクラウド</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Elastic-Load-Balancing：ロードバランサ"><span class="nav-number">6.2.</span> <span class="nav-text">Amazon Elastic Load Balancing：ロードバランサ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Route-53：クラウドDNSサーバ"><span class="nav-number">6.3.</span> <span class="nav-text">Amazon Route 53：クラウドDNSサーバ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWS-Direct-Connect：専用線接続サービス"><span class="nav-number">6.4.</span> <span class="nav-text">AWS Direct Connect：専用線接続サービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考資料"><span class="nav-number">7.</span> <span class="nav-text">参考資料</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+</body>
+</html>
