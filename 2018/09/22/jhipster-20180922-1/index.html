@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JHipster入門：概要とシンプルアプリ構築 | Tech-Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="アプリケーションJavaJHipster" />
+  
+  
+  
+  
+  <meta name="description" content="JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。マイナー感は否めないが、Javaのスキルアップには良い道しるべとなると思われる。">
+<meta name="keywords" content="アプリケーション,Java,JHipster">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster入門：概要とシンプルアプリ構築">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:description" content="JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。マイナー感は否めないが、Javaのスキルアップには良い道しるべとなると思われる。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/2018/09/22/jhipster-20180922-1/Jhipster.jpg">
+<meta property="og:updated_time" content="2018-09-21T21:22:42.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster入門：概要とシンプルアプリ構築">
+<meta name="twitter:description" content="JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。マイナー感は否めないが、Javaのスキルアップには良い道しるべとなると思われる。">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/2018/09/22/jhipster-20180922-1/Jhipster.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-jhipster-20180922-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\22\jhipster-20180922-1\Jhipster.jpg" rel="gallery_cjmc51wt3000byktssy7q2ubg">
+        <img src="/hexo-site/2018\09\22\jhipster-20180922-1\Jhipster.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      JHipster入門：概要とシンプルアプリ構築
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/hexo-site/2018/09/22/jhipster-20180922-1/" class="article-date">
+	  <time datetime="2018-09-21T15:02:29.000Z" itemprop="datePublished">September 22, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/アプリケーション/">アプリケーション</a>, <a class="article-category-link" href="/hexo-site/categories/アプリケーション/JHipster/">JHipster</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。<br>マイナー感は否めないが、Javaのスキルアップには良い道しるべとなると思われる。<br><a id="more"></a></p>
+<h2 id="JHipsterとは"><a href="#JHipsterとは" class="headerlink" title="JHipsterとは"></a>JHipsterとは</h2><p><a href="https://www.jhipster.tech/" target="_blank" rel="noopener">https://www.jhipster.tech/</a></p>
+<p>Spring Boot + Angular / React WebアプリケーションおよびSpringマイクロサービスを生成、開発、およびデプロイするための開発プラットフォームである。SPA（single-page application）＋マイクロサービスを構築するための土台を用意してくれるのだ。</p>
+<p>そもそも、このプラットフォームを見つけた経緯としては、JavaでRuby on Railsのscaffold的なことが出来ないかを調査したところから始まる。<br>scaffoldとはCRUD画面とそれに紐づくドメインモデル（エンティティ）を自動生成してくれる仕組みだ。<br>シンプルな画面しか生成されないためコードをガリガリ修正する必要はあるが、ゼロから作成するよりも負担は低いし、生成されたコードは入門者の良いお手本になる。</p>
+<p>「それならplay frameworkでしょ」となるかもしれないが、個人的にあれはJavaではない気がする。<br>確かにJavaVMで動作するし、Java言語（推奨はJVM言語のScalaだが）でコーディングするが、J2EEは用いない。<br>長いことJavaをやってると、WebアプリでJ2EE（Servlet）を用いないのはすごく違和感がある。<br>別に貶しているわけではない、play frameworkに組み込まれているノンブロッキングIOのNettyサーバーはB2Cでは必須級のサーバだと思うし、高速開発には良いフレームワークだと思う。<br>ただ、play frameworkで作るならRuby on Railsで良くない？となってしまう。</p>
+<p>やはりJavaのWebといえばJ2EEコンテナでしょ！Springでしょ！となる。<br>そこで見つけたのがJHipsterになる。</p>
+<p><br></p>
+<h2 id="JHipsterの特徴"><a href="#JHipsterの特徴" class="headerlink" title="JHipsterの特徴"></a>JHipsterの特徴</h2><p>Spring Bootを軸として、それに付与するテクノロジーを選択して構築していく。<br>JHipsterはフレームワークではなく、コードジェネレータの役割を果たすために開発プラットフォームとなっている。<br>マイナーなプラットフォームだし、比較的新しい技術をガンガン取り入れている感じがするので、<br>実運用で使うのは懸念が生じるが、そもそも基盤はSpring BootやAngular（or React）なので<br>自動生成されるソースを熟知すれば問題ないとも思う。</p>
+<p>・とりあえず実績。※実際に使用しているかは分からない<br><a href="https://www.jhipster.tech/companies-using-jhipster/" target="_blank" rel="noopener">https://www.jhipster.tech/companies-using-jhipster/</a></p>
+<p>Adobiやgoogle、Pivotal、NTT DATAまでもある。<br>ダウンロード数は月に75,000。GitHubリポジトリ検索は2,723。<br>（ちなみにjava 881,294 spring 352,379）</p>
+<p>・クライアントサイド　テクノロジー<br><img src="http://drive.google.com/uc?export=view&amp;id=1reb6J6OAKhglbUa_fTP2ref5IM4-aWIm" alt=""></p>
+<p>・サーバーサイド　テクノロジー<br><img src="http://drive.google.com/uc?export=view&amp;id=1Er8xDMupdNeOlGrlM3Fku0JwxA14J9lI" alt=""></p>
+<p>・デベロップメント　テクノロジー<br><img src="http://drive.google.com/uc?export=view&amp;id=1b1Mzh_Rw1alfg2eOoWaCwZzK5cyx5bQu" alt=""></p>
+<p>・CD/CI　テクノロジー<br><img src="http://drive.google.com/uc?export=view&amp;id=1HhuVLp8Dq087eFdrjVwLj7cfSxgloOkJ" alt=""></p>
+<p><br></p>
+<h2 id="JHipsterインストール"><a href="#JHipsterインストール" class="headerlink" title="JHipsterインストール"></a>JHipsterインストール</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">環境</th>
+<th style="text-align:left">バージョン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">OS</td>
+<td style="text-align:left">Windows10 Home</td>
+</tr>
+<tr>
+<td style="text-align:left">node.js</td>
+<td style="text-align:left">8.12.0 (LTS)</td>
+</tr>
+<tr>
+<td style="text-align:left">java</td>
+<td style="text-align:left">1.8.0_73</td>
+</tr>
+<tr>
+<td style="text-align:left">jhipster</td>
+<td style="text-align:left">5.2.1※最新より少しバージョンダウン</td>
+</tr>
+</tbody>
+</table>
+<p>JHipsterのインストールはnode.jsのnpmで行う。<br>よってnode.jsをインストールする。※安定版（LTS）を選択すること<br><a href="https://nodejs.org/ja/" target="_blank" rel="noopener">https://nodejs.org/ja/</a></p>
+<p>Javaは1.8以上をインストール。<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<p>PowerShellでnpm install -g generator-jhipsterを実行する。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS C:\dev\JHipster&gt; node --version</span><br><span class="line">v8.<span class="number">12</span>.<span class="number">0</span></span><br><span class="line">PS C:\dev\JHipster&gt; java -version</span><br><span class="line">java version "<span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_73"</span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_73-b02)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25</span>.<span class="number">73</span>-b02, mixed <span class="built_in">mode</span>)</span><br><span class="line">PS C:\dev\JHipster&gt; npm install -g generator-jhipster@<span class="number">5</span>.<span class="number">2</span>.<span class="number">1</span></span><br><span class="line">・・・</span><br><span class="line">PS C:\dev\JHipster\myApp&gt; jhipster --version</span><br><span class="line">Using JHipster version installed globally</span><br><span class="line"><span class="number">5</span>.<span class="number">2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="アプリの構築"><a href="#アプリの構築" class="headerlink" title="アプリの構築"></a>アプリの構築</h2><p>myAppとしてサンプルアプリを構築する<br>myAppフォルダを作り、カレントにしてjhipsterを実行する。<br>その後、どのような構築を行うか質問が来るので回答を入れていく。<br>質問の内容は、下記のシートを参照<br><a href="https://drive.google.com/open?id=1PNQogsa49eb5v_VB8zC684v3mNzthZd79YNWbW05qAI" target="_blank" rel="noopener">https://drive.google.com/open?id=1PNQogsa49eb5v_VB8zC684v3mNzthZd79YNWbW05qAI</a></p>
+<p>シンプル構成で構築</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">質問</th>
+<th style="text-align:left">回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">アプリタイプ</td>
+<td style="text-align:left">モノリシックアプリケーション</td>
+</tr>
+<tr>
+<td style="text-align:left">アプリ名</td>
+<td style="text-align:left">myApp</td>
+</tr>
+<tr>
+<td style="text-align:left">パッケージ</td>
+<td style="text-align:left">jp.co.myApp</td>
+</tr>
+<tr>
+<td style="text-align:left">JHipsterレジストリを使用</td>
+<td style="text-align:left">無し</td>
+</tr>
+<tr>
+<td style="text-align:left">認証</td>
+<td style="text-align:left">JWT認証</td>
+</tr>
+<tr>
+<td style="text-align:left">データベースタイプ</td>
+<td style="text-align:left">SQLデータベース</td>
+</tr>
+<tr>
+<td style="text-align:left">データベース（本番）</td>
+<td style="text-align:left">PostgreSQL</td>
+</tr>
+<tr>
+<td style="text-align:left">データベース（開発）</td>
+<td style="text-align:left">H2インメモリ</td>
+</tr>
+<tr>
+<td style="text-align:left">Springキャッシュ</td>
+<td style="text-align:left">有り</td>
+</tr>
+<tr>
+<td style="text-align:left">Hibenate2次キャッシュ</td>
+<td style="text-align:left">有り</td>
+</tr>
+<tr>
+<td style="text-align:left">Maven or Gradle</td>
+<td style="text-align:left">Maven</td>
+</tr>
+<tr>
+<td style="text-align:left">その他テクノロジー</td>
+<td style="text-align:left">無し</td>
+</tr>
+<tr>
+<td style="text-align:left">クライアントフレームワーク</td>
+<td style="text-align:left">Angular</td>
+</tr>
+<tr>
+<td style="text-align:left">LibSassの使用</td>
+<td style="text-align:left">無し</td>
+</tr>
+<tr>
+<td style="text-align:left">国際化のサポート</td>
+<td style="text-align:left">有り（ベースはEnglish、言語選択で日本語を追加）</td>
+</tr>
+<tr>
+<td style="text-align:left">テスティングフレームワーク</td>
+<td style="text-align:left">Protractor</td>
+</tr>
+<tr>
+<td style="text-align:left">JHipster Marketplaceの使用</td>
+<td style="text-align:left">無し</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">PS C:\dev\JHipster&gt; <span class="built_in">mkdir</span> myApp</span><br><span class="line">PS C:\dev\JHipster&gt; <span class="built_in">cd</span> myApp</span><br><span class="line">PS C:\dev\JHipster\myApp&gt; jhipster</span><br><span class="line"></span><br><span class="line">・・・</span><br><span class="line"></span><br><span class="line">? Which *<span class="built_in">type</span>* of application would you like to create? Monolithic application (recommended <span class="keyword">for</span> simple projects)</span><br><span class="line">? What is the base name of your application? myApp</span><br><span class="line">? What is your default Java package name? jp.co.myapp</span><br><span class="line">? <span class="keyword">Do</span> you want to use the JHipster Registry to configure, monitor and scale your application? No</span><br><span class="line">? Which *<span class="built_in">type</span>* of authentication would you like to use? JWT authentication (stateless, with a token)</span><br><span class="line">? Which *<span class="built_in">type</span>* of database would you like to use? SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL)</span><br><span class="line">? Which *production* database would you like to use? PostgreSQL</span><br><span class="line">? Which *development* database would you like to use? H2 with disk-based persistence</span><br><span class="line">? <span class="keyword">Do</span> you want to use the Spring cache abstraction? Yes, with the Ehcache implementation (local cache, <span class="keyword">for</span> a single node)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">? <span class="keyword">Do</span> you want to use Hibernate <span class="number">2</span>nd level cache? Yes</span><br><span class="line">? Would you like to use Maven or Gradle <span class="keyword">for</span> building the backend? Maven</span><br><span class="line">? Which other technologies would you like to use?</span><br><span class="line">? Which *Framework* would you like to use <span class="keyword">for</span> the client? Angular <span class="number">6</span></span><br><span class="line">? Would you like to enable *SASS* stylesheet preprocessor? No</span><br><span class="line">? Would you like to enable internationalization support? Yes</span><br><span class="line">? Please choose the native language of the application English</span><br><span class="line">? Please choose additional languages to install Japanese</span><br><span class="line">? Besides JUnit and Jest, which testing frameworks would you like to use? Protractor</span><br><span class="line">? Would you like to install other generators from the JHipster Marketplace? No</span><br><span class="line"></span><br><span class="line">・・・</span><br><span class="line"></span><br><span class="line">&gt; my-app@<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span> cleanup C:\dev\JHipster\myApp</span><br><span class="line">&gt; rimraf target/&#123;aot,www&#125;</span><br><span class="line"></span><br><span class="line">Congratulations, JHipster execution is complete!</span><br><span class="line">Application successfully committed to Git.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="アプリの起動"><a href="#アプリの起動" class="headerlink" title="アプリの起動"></a>アプリの起動</h2><p>Maven wrapperを実行する</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\dev\JHipster\myApp&gt; .\mvnw</span><br><span class="line">・・・</span><br></pre></td></tr></table></figure>
+<p>下記のURLを開いてページが表示されればOK<br><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1-N2zdXbJsqIDW2rPBSIqlkQgqnSiItbk" alt=""></p>
+<p>右上のlanguageから日本語を選択すると日本語化される。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1w37Mq0Gskx4wBzTHNS--__Fa0O73_7_z" alt=""></p>
+<p>adminでログインして、メトリクス等が正常に動作していくか確認<br><img src="http://drive.google.com/uc?export=view&amp;id=1JirB-pVZ5PyNuekl6bR6PqjtJq2dqHCJ" alt=""></p>
+<p>ユーザ管理からユーザの登録もできるが、<br>指定したメールアドレスは実際に送信処理が行われるので注意すること。</p>
+<p><br></p>
+<h2 id="エンティティの作成"><a href="#エンティティの作成" class="headerlink" title="エンティティの作成"></a>エンティティの作成</h2><p><a href="https://www.jhipster.tech/jdl/" target="_blank" rel="noopener">https://www.jhipster.tech/jdl/</a></p>
+<p>やり方は色々とあるようだが、ここではJDL-Studioを用いてエンティティを作成する</p>
+<p><a href="https://start.jhipster.tech/jdl-studio/" target="_blank" rel="noopener">https://start.jhipster.tech/jdl-studio/</a></p>
+<p>開くと、簡単なサンプルブログのエンティティ構造のが示されている。<br>とりあえず、このエンティティをmyAppに取り込む。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1V5vUUCBABPROhS7EyJZqAnBAh4_MXV_G" alt=""><br>右上の↓矢印でjdlファイルのダウンロードを行う。</p>
+<p>ダウンロードしたファイルを、適当なフォルダに移動する。<br>ここではmyAppの下にjdlフォルダを作成して、sample-blog-jdl.jhに名前を変更して配置する。</p>
+<p>jdlファイルをアプリに取り込む<br>コードを上書きする際にどのようにマージするか質問※されるので、aのoverwrite this and all othersを<br>選択する。<br>※Overwrite src\main\resources\config\liquibase\master.xml?</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\dev\JHipster\myApp&gt; jhipster import-jdl .\jdl\sample-blog-jdl.jh</span><br><span class="line">・・・</span><br></pre></td></tr></table></figure>
+<p>メニューのエンティティに項目が追加され、CRUD操作を行うことが出来るようになる。<br><img src="http://drive.google.com/uc?export=view&amp;id=1y7izhPf78XkjqbV5nshBJVBoPcT8MRn9" alt=""></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1F_rpJm_Xefw8K-a0am3iPgZiK6CjM63_" alt=""></p>
+<p><br></p>
+<h2 id="Intellj-IDEAによる開発"><a href="#Intellj-IDEAによる開発" class="headerlink" title="Intellj IDEAによる開発"></a>Intellj IDEAによる開発</h2><p>１．プロジェクトのインポート<br><img src="http://drive.google.com/uc?export=view&amp;id=1sf31u5ldVoRXoxKZdQnH53yJEflh_34A" alt=""></p>
+<p>２．myAppにあるpom.xmlを選択する<br><img src="http://drive.google.com/uc?export=view&amp;id=1U23nkha8fshxZfc1vBQTI3pkUO_wcGTH" alt=""></p>
+<p>３．そのまま「次へ」を選び続け完了する。</p>
+<p>４．jp.co.myapp.MyAppを実行すればアプリケーションが起動する<br><img src="http://drive.google.com/uc?export=view&amp;id=15f5WHA5ritMd0MEW3KMIU5gFMxI8_oNR" alt=""></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/アプリケーション/">アプリケーション</a>, <a class="article-category-link" href="/hexo-site/categories/アプリケーション/JHipster/">JHipster</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/JHipster/">JHipster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/アプリケーション/">アプリケーション</a></li></ul>
+
+      
+        
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexo-site/2018/09/17/aws-20180917-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">はじめてのAWS：④Amazon FC2(Amazon Linux)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JHipsterとは"><span class="nav-number">1.</span> <span class="nav-text">JHipsterとは</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JHipsterの特徴"><span class="nav-number">2.</span> <span class="nav-text">JHipsterの特徴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JHipsterインストール"><span class="nav-number">3.</span> <span class="nav-text">JHipsterインストール</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリの構築"><span class="nav-number">4.</span> <span class="nav-text">アプリの構築</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#アプリの起動"><span class="nav-number">5.</span> <span class="nav-text">アプリの起動</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#エンティティの作成"><span class="nav-number">6.</span> <span class="nav-text">エンティティの作成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intellj-IDEAによる開発"><span class="nav-number">7.</span> <span class="nav-text">Intellj IDEAによる開発</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!--	
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+-->	
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+</body>
+</html>
