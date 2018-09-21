@@ -20,7 +20,7 @@
 <meta property="og:description" content="JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。マイナー感は否めないが、Javaのスキルアップには良い道しるべになると思われる。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/2018/09/22/jhipster-20180922-1/Jhipster.jpg">
-<meta property="og:updated_time" content="2018-09-21T21:28:55.617Z">
+<meta property="og:updated_time" content="2018-09-21T21:38:57.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JHipster入門：概要とシンプルアプリ構築">
 <meta name="twitter:description" content="JHipsterという最新Java関連のテクノロジーを詰め込んだ開発プラットフォームがある。マイナー感は否めないが、Javaのスキルアップには良い道しるべになると思われる。">
@@ -138,7 +138,7 @@
 <h2 id="JHipsterとは"><a href="#JHipsterとは" class="headerlink" title="JHipsterとは"></a>JHipsterとは</h2><p><a href="https://www.jhipster.tech/" target="_blank" rel="noopener">https://www.jhipster.tech/</a></p>
 <p>Spring Boot + Angular / React WebアプリケーションおよびSpringマイクロサービスを生成、開発、およびデプロイするための開発プラットフォームである。SPA（single-page application）＋マイクロサービスを構築するための土台を用意してくれるのだ。</p>
 <p>そもそも、このプラットフォームを見つけた経緯としては、JavaでRuby on Railsのscaffold的なことが出来ないかを調査したところから始まる。<br>scaffoldとはCRUD画面とそれに紐づくドメインモデル（エンティティ）を自動生成してくれる仕組みだ。<br>シンプルな画面しか生成されないためコードをガリガリ修正する必要はあるが、ゼロから作成するよりも負担は低いし、生成されたコードは入門者の良いお手本になる。</p>
-<p>「それならplay frameworkでしょ」となるかもしれないが、個人的にあれはJavaではない気がする。<br>確かにJavaVMで動作するし、Java言語（推奨はJVM言語のScalaだが）でコーディングするが、J2EEは用いない。<br>長いことJavaをやってると、WebアプリでJ2EE（Servlet）を用いないのはすごく違和感がある。<br>別に貶しているわけではない、play frameworkに組み込まれているノンブロッキングIOのNettyサーバーはB2Cでは必須級のサーバだと思うし、高速開発には良いフレームワークだと思う。<br>ただ、play frameworkで作るならRuby on Railsで良くない？となってしまう。</p>
+<p>「それならplay frameworkでしょ」となるかもしれないが、個人的にあれはJavaではない気がする。<br>確かにJavaVMで動作するし、Java言語（推奨はJVM言語のScalaだが）でコーディングするが、J2EEは用いない。<br>長いことJavaをやってると、WebアプリでJ2EE（Servlet）を用いないのはすごく違和感がある。<br>別に貶しているわけではない。play frameworkに組み込まれているノンブロッキングIOのNettyサーバーはB2Cでは必須級のサーバだと思うし、高速開発には良いフレームワークだと思う。<br>ただ、play frameworkで作るならRuby on Railsで良くない？となってしまう。</p>
 <p>やはりJavaのWebといえばJ2EEコンテナでしょ！Springでしょ！となる。<br>そこで見つけたのがJHipsterになる。</p>
 <p><br></p>
 <h2 id="JHipsterの特徴"><a href="#JHipsterの特徴" class="headerlink" title="JHipsterの特徴"></a>JHipsterの特徴</h2><p>Spring Bootを軸として、それに付与するテクノロジーを選択して構築していく。<br>JHipsterはフレームワークではなく、コードジェネレータの役割を果たすために開発プラットフォームとなっている。<br>マイナーなプラットフォームだし、比較的新しい技術をガンガン取り入れている感じがするので、<br>実運用で使うのは懸念が生じるが、そもそも基盤はSpring BootやAngular（or React）なので<br>自動生成されるソースを熟知すれば問題ないとも思う。</p>
@@ -177,7 +177,7 @@
 </table>
 <p>JHipsterのインストールはnode.jsのnpmで行う。<br>よってnode.jsをインストールする。※安定版（LTS）を選択すること<br><a href="https://nodejs.org/ja/" target="_blank" rel="noopener">https://nodejs.org/ja/</a></p>
 <p>Javaは1.8以上をインストール。<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<p>PowerShellでnpm install -g generator-jhipsterを実行する。</p>
+<p>PowerShellでnpm install -g <a href="mailto:generator-jhipster@5.2.1" target="_blank" rel="noopener">generator-jhipster@5.2.1</a>を実行する。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS C:\dev\JHipster&gt; node --version</span><br><span class="line">v8.<span class="number">12</span>.<span class="number">0</span></span><br><span class="line">PS C:\dev\JHipster&gt; java -version</span><br><span class="line">java version "<span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_73"</span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1</span>.<span class="number">8</span>.<span class="number">0</span>_73-b02)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25</span>.<span class="number">73</span>-b02, mixed <span class="built_in">mode</span>)</span><br><span class="line">PS C:\dev\JHipster&gt; npm install -g generator-jhipster@<span class="number">5</span>.<span class="number">2</span>.<span class="number">1</span></span><br><span class="line">・・・</span><br><span class="line">PS C:\dev\JHipster\myApp&gt; jhipster --version</span><br><span class="line">Using JHipster version installed globally</span><br><span class="line"><span class="number">5</span>.<span class="number">2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h2 id="アプリの構築"><a href="#アプリの構築" class="headerlink" title="アプリの構築"></a>アプリの構築</h2><p>myAppとしてサンプルアプリを構築する<br>myAppフォルダを作り、カレントにしてjhipsterを実行する。<br>その後、どのような構築を行うか質問が来るので回答を入れていく。<br>質問の内容は、下記のシートを参照<br><a href="https://drive.google.com/open?id=1PNQogsa49eb5v_VB8zC684v3mNzthZd79YNWbW05qAI" target="_blank" rel="noopener">https://drive.google.com/open?id=1PNQogsa49eb5v_VB8zC684v3mNzthZd79YNWbW05qAI</a></p>
