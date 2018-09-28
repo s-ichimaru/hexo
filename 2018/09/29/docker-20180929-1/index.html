@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docker入門：インストールと基本操作 | Tech-Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="仮想化Docker" />
+  
+  
+  
+  
+  <meta name="keywords" content="仮想化,Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入門：インストールと基本操作">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/2018/09/27/docker-20180927-1/docker-title.jpg">
+<meta property="og:updated_time" content="2018-09-28T22:46:49.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入門：インストールと基本操作">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/2018/09/27/docker-20180927-1/docker-title.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-docker-20180929-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" rel="gallery_cjmmdmvbo000838ts8n8i5jmu">
+        <img src="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Docker入門：インストールと基本操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/hexo-site/2018/09/29/docker-20180929-1/" class="article-date">
+	  <time datetime="2018-09-28T15:54:53.000Z" itemprop="datePublished">September 29, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　<br><a id="more"></a></p>
+<h2 id="Dockerインストール（Windows）"><a href="#Dockerインストール（Windows）" class="headerlink" title="Dockerインストール（Windows）"></a>Dockerインストール（Windows）</h2><p>Windows版のDockerは、２つのバージョンがある。</p>
+<p>・Docker for Windows<br>　Window 10 Professionalで導入する。<br>　DockerマシンはHyper-Vで作成する。<br>　公式はこちらを推奨している。</p>
+<p>　下記のサイトからインストーラをダウンロードしてインストールする。<br>　<a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">https://www.docker.com/products/docker-desktop</a><br>　<br>・Docker Toolbox<br>　Windows 10 Home以下のOSで導入する。<br>　DockerマシンはVirtualBoxで作成する（HomeではHyper-Vが利用できない）</p>
+<p>　下記のサイトからインストーラをダウンロードしてインストールする。<br>　<a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank" rel="noopener">https://docs.docker.com/toolbox/toolbox_install_windows/</a></p>
+<p>こちらの環境はWindows 10 Homeのため、Docker Toolboxを用いて説明を行う。</p>
+<h2 id="Docker構成"><a href="#Docker構成" class="headerlink" title="Docker構成"></a>Docker構成</h2><p><img src="http://drive.google.com/uc?export=view&amp;id=1YAUNa4AS07vHKIdqy2TwWTh40-RgKwHh" alt=""></p>
+<p>・Windowsマシン（Windowsホスト）<br>　Dockerをインストールしたマシン。<br>　VirtualBox（Proの場合はHyper-V）をDockerマシンを作成する。<br>　Dockerクライアントを用いてDockerマシンを操作する。</p>
+<p>・Dockerマシン（Dockerホスト）<br>　Dockerコンテナを管理する仮想マシン。</p>
+<p>・Dockerイメージ<br>　コンテナを構成するイメージファイル。<br>　イメージはDockerリポジトリからダウンロードする。<br>　<br>・Dockerコンテナ<br>　Dockerイメージから作成される仮想コンテナ。</p>
+<p>・Docker Hub<br>　Dockerイメージを管理するクラウドリポジトリ。<br>　<a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></p>
+<p><br></p>
+<h2 id="Dockerマシン作成"><a href="#Dockerマシン作成" class="headerlink" title="Dockerマシン作成"></a>Dockerマシン作成</h2><p>まずはDockerマシンを作成する。<br>PowerShellで操作を行う。マシン名はtest-machineとする。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Docker Mahcine　一覧コマンド</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS</span><br><span class="line"><span class="comment"># Docker Mahcine　作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine create <span class="built_in">test</span>-machine</span><br><span class="line">Running pre-create checks...</span><br><span class="line">Creating machine...</span><br><span class="line">（省略）</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   -        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
+<p>アクティブ化してDockerクライアントで操作できるようにする。<br>docker-machine env～で環境変数を取得して、一番最後に出力される「&amp;～|Invoke-Expression」を実行する。docker-machine ls でActiveに*がついていれば完了。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker-machine env <span class="built_in">test</span>-machine --shell powershell</span><br><span class="line">（省略）</span><br><span class="line"><span class="comment"># Run this command to configure your shell:</span></span><br><span class="line"><span class="comment"># &amp; "D:\Installs\Docker Toolbox\docker-machine.exe" env test-machine --shell powershell | Invoke-Expression</span></span><br><span class="line">PS D:\dev\docker&gt; &amp; <span class="string">"D:\Installs\Docker Toolbox\docker-machine.exe"</span> env <span class="built_in">test</span>-machine --shell powershell | Invoke-Expression</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   *        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Dockerコンテナの作成"><a href="#Dockerコンテナの作成" class="headerlink" title="Dockerコンテナの作成"></a>Dockerコンテナの作成</h2><p>次にDockerコンテナを作成する。<br>ここではApacheをインストールして動作確認を行う。</p>
+<p>手順）<br>　・Docker Hubでイメージを確認<br>　・イメージの取得（docker pull）<br>　・コンテナの作成（docker create）<br>　・コンテナの起動（docker start）<br>　・コンテナの起動２（docker run）</p>
+<p><br></p>
+<h3 id="Docker-Hubでイメージを確認"><a href="#Docker-Hubでイメージを確認" class="headerlink" title="Docker Hubでイメージを確認"></a>Docker Hubでイメージを確認</h3><p>　コンテナを作成するにはイメージが必要なので、<br>　Docker Hub( <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a> )からhttpdを検索してイメージの情報を確認する。<br><img src="http://drive.google.com/uc?export=view&amp;id=1xPYkO8UZ81ugERks7GGP114W5j4ttJLy" alt=""><br><img src="http://drive.google.com/uc?export=view&amp;id=1lkVMK_13WDnHpiakl90VkdW-d865J-95" alt=""></p>
+<p><br></p>
+<h3 id="イメージの取得（docker-pull）"><a href="#イメージの取得（docker-pull）" class="headerlink" title="イメージの取得（docker pull）"></a>イメージの取得（docker pull）</h3><p>　docker pullでイメージのダウンロードを行う。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apache Imageの取得</span></span><br><span class="line">PS D:\dev\docker&gt; docker pull httpd</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/httpd</span><br><span class="line">f189db1b88b3: Pull complete</span><br><span class="line">ba2d31d4e2e7: Pull complete</span><br><span class="line">23a65f5e3746: Pull complete</span><br><span class="line">5e8eccbd4bc6: Pull complete</span><br><span class="line">4c145eec18d8: Pull complete</span><br><span class="line">c64fd93430a0: Pull complete</span><br><span class="line">c9efc31823a2: Pull complete</span><br><span class="line">Digest: sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> httpd:latest</span><br><span class="line">PS D:\dev\docker&gt;</span><br><span class="line"><span class="comment"># Imageの一覧</span></span><br><span class="line">PS D:\dev\docker&gt; docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">httpd               latest              dabb52744997        2 days ago          178MB</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="コンテナの作成（docker-create）"><a href="#コンテナの作成（docker-create）" class="headerlink" title="コンテナの作成（docker create）"></a>コンテナの作成（docker create）</h3><p>docker createでコンテナを作成する。<br>「–name apache」でコンテナに名前を付ける。<br>「-p 8081:80」でポートフォワードを行う。（DockerホストIP）:8081⇒（コンテナIP）:80でフォワードする。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apacheコンテナを作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker create --name apache -p 8081:80 httpd</span><br><span class="line">7c725ff3a73331f2dafad9da4b11748a6ee86b965c7c24a696ae6e53a018325c</span><br><span class="line"><span class="comment"># コンテナ一覧（停止中も含める）</span></span><br><span class="line">PS D:\dev\docker&gt; docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS               NAMES</span><br><span class="line">7c725ff3a733        httpd               <span class="string">"httpd-foreground"</span>   6 seconds ago       Created                                 apache</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="コンテナの起動（docker-start）"><a href="#コンテナの起動（docker-start）" class="headerlink" title="コンテナの起動（docker start）"></a>コンテナの起動（docker start）</h3><p>docker startでコンテナ名を指定して起動する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apacheコンテナを起動</span></span><br><span class="line">PS D:\dev\docker&gt; docker start apache</span><br><span class="line">apache</span><br><span class="line"><span class="comment"># コンテナ一覧（起動中のみ）</span></span><br><span class="line">PS D:\dev\docker&gt; docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">7c725ff3a733        httpd               <span class="string">"httpd-foreground"</span>   7 minutes ago       Up 3 seconds        0.0.0.0:8081-&gt;80/tcp   apache</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<p>ブラウザで「（DockerホストIP）:8081」で画面が表示されるか確認する。<br>なお、DockerホストのIPは「docker-machine ls」か「docker-machine ip test-machine」で確認できる。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1I4R1lOOnRngw49ssRWHjzYrLJHsFGCcx" alt=""></p>
+<p><br></p>
+<h3 id="コンテナの起動２（docker-run）"><a href="#コンテナの起動２（docker-run）" class="headerlink" title="コンテナの起動２（docker run）"></a>コンテナの起動２（docker run）</h3><p>docker runは、docker pull ⇒ docker create ⇒ docker startを一括で行ってくれるコマンド。<br>特に理由がないなら、こちらを利用したほうが効率が良い。<br>なお、上記のapacheをdocker runで起動する場合は</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name apache -d -p 8081:80 httpd</span><br></pre></td></tr></table></figure>
+<p>となる。<br>注意するのは、docker createはデタッチモードで作成されるが、<br>docker runはアタッチモードで作成される。<br>そのため、デーモン実行する場合は「-d」を付与する。</p>
+<p><br></p>
+<h2 id="起動中のDockerコンテナにアタッチ"><a href="#起動中のDockerコンテナにアタッチ" class="headerlink" title="起動中のDockerコンテナにアタッチ"></a>起動中のDockerコンテナにアタッチ</h2><p>起動中のDockerコンテナを操作する場合、docker execでシェルを実行すれば侵入できる。<br>その際、STDINを開き、疑似ターミナル (pseudo-TTY) を割り当てる必要がある。<br>そのオプションが「-i」と「-t」となる。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker <span class="built_in">exec</span> -it apache /bin/bash</span><br><span class="line">root@7c725ff3a733:/usr/<span class="built_in">local</span>/apache2<span class="comment"># ls</span></span><br><span class="line">bin  build  cgi-bin  conf  error  htdocs  icons  include  logs  modules</span><br><span class="line">root@7c725ff3a733:/usr/<span class="built_in">local</span>/apache2<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="コンテナ停止、削除"><a href="#コンテナ停止、削除" class="headerlink" title="コンテナ停止、削除"></a>コンテナ停止、削除</h2><p>docker stopとdocker rmを用いる。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker stop apache</span><br><span class="line">apache</span><br><span class="line">PS D:\dev\docker&gt; docker rm apache</span><br><span class="line">apache</span><br></pre></td></tr></table></figure>
+<p>注意）コンテナの削除を行うとコンテナ内のデータは削除される。<br>例えば、データベースコンテナを削除するとテーブルやデータは全て初期化される。<br>これはDocker Volume機能を用いて、ホスト側でデータを作成すれば解決する。</p>
+<p><br></p>
+<h2 id="イメージの削除"><a href="#イメージの削除" class="headerlink" title="イメージの削除"></a>イメージの削除</h2><p>docker rmiでイメージを削除する。<br>パラメータにはIMAGE IDを指定する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">httpd               latest              dabb52744997        2 days ago          178MB</span><br><span class="line">PS D:\dev\docker&gt; docker rmi dabb52744997</span><br><span class="line">Untagged: httpd:latest</span><br><span class="line">Untagged: httpd@sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23</span><br><span class="line">Deleted: sha256:dabb527449975533d6eea937e5a0123ed1b57b16d921b7b4346a3cf367751615</span><br><span class="line">Deleted: sha256:5d49a3f053113d87d691d2522f9c0277ffd18cabcce0d66c684099e1247afece</span><br><span class="line">Deleted: sha256:eaa99c16f7c88d1e682bcf28bddfe2fc2af60578976c649e7682f8285b61e3db</span><br><span class="line">Deleted: sha256:508679f3525982886ebd38e574f94503859b6dcecc16b4905e96162f9e3676c2</span><br><span class="line">Deleted: sha256:ea41f37c700199a74899df991c29276c58d47855b9366d0afaeec94f9b40b693</span><br><span class="line">Deleted: sha256:907e44cd08b8d5d3579acad7aafc3f9e7cbe4fef06e661fffd9d0bbfe0acfd9a</span><br><span class="line">Deleted: sha256:b5a1919e63f10b3e8057ca92fd414c7eb93bf06aa0a797701f5d598e35a811d5</span><br><span class="line">Deleted: sha256:8c466bf4ca6ffdda8b7717b1cd6fe31109529ee64e626a003a224fb8bd2bc469</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="よく使うDockerコマンド一覧"><a href="#よく使うDockerコマンド一覧" class="headerlink" title="よく使うDockerコマンド一覧"></a>よく使うDockerコマンド一覧</h2><p><a href="http://docs.docker.jp/engine/reference/commandline/index.html#docker-management-commands" target="_blank" rel="noopener">http://docs.docker.jp/engine/reference/commandline/index.html#docker-management-commands</a></p>
+<h3 id="Docker-Machine"><a href="#Docker-Machine" class="headerlink" title="Docker Machine"></a>Docker Machine</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">コマンド</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">docker-machine ls</td>
+<td style="text-align:left">Dockerマシン一覧</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine create [name]</td>
+<td style="text-align:left">Dockerマシンを作成する<br>Hyper-Vではオプションに–driver hypervが必要</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine rm [name]</td>
+<td style="text-align:left">Dockerマシンを削除する</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine start [name]</td>
+<td style="text-align:left">Dockerマシンを実行する</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine stop [name]</td>
+<td style="text-align:left">Dockerマシンを停止する</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine env [name] —shell powershell</td>
+<td style="text-align:left">Docker環境変数の取得を行う</td>
+</tr>
+<tr>
+<td style="text-align:left">docker-machine ssh [name]</td>
+<td style="text-align:left">Dockerマシンにssh接続を行う</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="Docker-イメージ"><a href="#Docker-イメージ" class="headerlink" title="Docker イメージ"></a>Docker イメージ</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">コマンド</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">docker images</td>
+<td style="text-align:left">イメージの一覧　　　　　　　　</td>
+</tr>
+<tr>
+<td style="text-align:left">docker pull [repositoryName:tag]</td>
+<td style="text-align:left">イメージを取り込み</td>
+</tr>
+<tr>
+<td style="text-align:left">docker rmi [image]</td>
+<td style="text-align:left">イメージの削除</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="Docker-コンテナ"><a href="#Docker-コンテナ" class="headerlink" title="Docker コンテナ"></a>Docker コンテナ</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">コマンド</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">docker ps</td>
+<td style="text-align:left">プロセス一覧<br>-aで停止中も表示</td>
+</tr>
+<tr>
+<td style="text-align:left">docker create [image]</td>
+<td style="text-align:left">コンテナの作成<br>–name：コンテナ名<br>-p ポートフォワード</td>
+</tr>
+<tr>
+<td style="text-align:left">docker start [container]</td>
+<td style="text-align:left">コンテナの実行</td>
+</tr>
+<tr>
+<td style="text-align:left">docker run [image]</td>
+<td style="text-align:left">pull,create,startのセットコマンド</td>
+</tr>
+<tr>
+<td style="text-align:left">docker stop [container]</td>
+<td style="text-align:left">コンテナの停止</td>
+</tr>
+<tr>
+<td style="text-align:left">docker rm [container]</td>
+<td style="text-align:left">コンテナの削除</td>
+</tr>
+<tr>
+<td style="text-align:left">docker exec [container][command]</td>
+<td style="text-align:left">コンテナのコマンド実行<br>コンテナアタッチ：-it /bin/bash</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/仮想化/">仮想化</a></li></ul>
+
+      
+        
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexo-site/2018/09/27/docker-20180927-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker入門：概要</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerインストール（Windows）"><span class="nav-number">1.</span> <span class="nav-text">Dockerインストール（Windows）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker構成"><span class="nav-number">2.</span> <span class="nav-text">Docker構成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerマシン作成"><span class="nav-number">3.</span> <span class="nav-text">Dockerマシン作成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerコンテナの作成"><span class="nav-number">4.</span> <span class="nav-text">Dockerコンテナの作成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-Hubでイメージを確認"><span class="nav-number">4.1.</span> <span class="nav-text">Docker Hubでイメージを確認</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#イメージの取得（docker-pull）"><span class="nav-number">4.2.</span> <span class="nav-text">イメージの取得（docker pull）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの作成（docker-create）"><span class="nav-number">4.3.</span> <span class="nav-text">コンテナの作成（docker create）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの起動（docker-start）"><span class="nav-number">4.4.</span> <span class="nav-text">コンテナの起動（docker start）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの起動２（docker-run）"><span class="nav-number">4.5.</span> <span class="nav-text">コンテナの起動２（docker run）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#起動中のDockerコンテナにアタッチ"><span class="nav-number">5.</span> <span class="nav-text">起動中のDockerコンテナにアタッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンテナ停止、削除"><span class="nav-number">6.</span> <span class="nav-text">コンテナ停止、削除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イメージの削除"><span class="nav-number">7.</span> <span class="nav-text">イメージの削除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#よく使うDockerコマンド一覧"><span class="nav-number">8.</span> <span class="nav-text">よく使うDockerコマンド一覧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-Machine"><span class="nav-number">8.1.</span> <span class="nav-text">Docker Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-イメージ"><span class="nav-number">8.2.</span> <span class="nav-text">Docker イメージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-コンテナ"><span class="nav-number">8.3.</span> <span class="nav-text">Docker コンテナ</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!--	
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+-->	
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+</body>
+</html>
