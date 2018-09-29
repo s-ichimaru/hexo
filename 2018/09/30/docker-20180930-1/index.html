@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Docker入門：ボリュームとバインドマウント | Tech-Tutorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="仮想化Docker" />
+  
+  
+  
+  
+  <meta name="keywords" content="仮想化,Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入門：ボリュームとバインドマウント">
+<meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/index.html">
+<meta property="og:site_name" content="Tech-Tutorial">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/2018/09/27/docker-20180927-1/docker-title.jpg">
+<meta property="og:updated_time" content="2018-09-29T23:49:07.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入門：ボリュームとバインドマウント">
+<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/2018/09/27/docker-20180927-1/docker-title.jpg">
+  
+  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexo-site/css/style.css">
+
+  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
+  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
+  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-docker-20180930-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" rel="gallery_cjmo0kkln000klotskfuxd2zg">
+        <img src="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Docker入門：ボリュームとバインドマウント
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/hexo-site/2018/09/30/docker-20180930-1/" class="article-date">
+	  <time datetime="2018-09-29T22:03:54.000Z" itemprop="datePublished">September 30, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+ 
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　<br><a id="more"></a></p>
+<h2 id="ボリュームについて"><a href="#ボリュームについて" class="headerlink" title="ボリュームについて"></a>ボリュームについて</h2><p>ボリュームとは、コンテナ内のデータを永続化する仕組み。<br>コンテナ内にデータを作成すると、コンテナ削除でデータも初期化されるが、<br>ボリュームを用いるとDockerホストにデータを保持するため初期化されない。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1Gqhofmg3k54tm_ErI8bfr4YgGm4LX8IC" alt=""></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1DugNYxdMXIVf_Hgk16YH__WD4hGdiCMq" alt=""></p>
+<p>ボリュームはDockerで管理されているデータ群であり、エディタ等で直接内容を変更することは推奨されていない。</p>
+<p><br></p>
+<h2 id="バインドマウントについて"><a href="#バインドマウントについて" class="headerlink" title="バインドマウントについて"></a>バインドマウントについて</h2><p>バインドマウントとは、ホスト側のディレクトリとコンテナをマウントする仕組み。<br>ソースコードなど内容を変更したいものはこちらを用いる。<br>なお、バインドマウントでは、Windowsホストのディレクトリにもマウントすることが可能。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=19K-H9f7TFrZdbbHBc8YlRDGpeBMMPu37" alt=""></p>
+<p>ボリュームはDockerコマンド（docker volume ls等）で操作できるため管理が容易だが、バインドマウントでは使えない。そのため、極力ボリュームを利用したほうが望ましい。<br>注意）Docker Toolbox(VirutalBox)では、C:\Users\（ユーザ名）配下のディレクトリのみバインド可能。</p>
+<p><br></p>
+<h2 id="PostgreSQLでボリューム作成"><a href="#PostgreSQLでボリューム作成" class="headerlink" title="PostgreSQLでボリューム作成"></a>PostgreSQLでボリューム作成</h2><p>PostgreSQLでのボリュームの利用例を示す。</p>
+<p>ボリュームを使うには-vオプションを使用する。<br>「-v (ボリュームラベル名):（コンテナのフルパス）」<br>ここでは、PostgreSQLコンテナの「/var/lib/postgresql/data」をボリューム名「pgdata」で作成する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name some-postgres -v pgdata:/var/lib/postgresql/data -p 5432:5432 -d postgres:9.6</span><br></pre></td></tr></table></figure>
+<p>docker volume ls でボリュームが作成されていることを確認する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker volume ls</span><br><span class="line">DRIVER              VOLUME NAME</span><br><span class="line"><span class="built_in">local</span>               pgdata</span><br></pre></td></tr></table></figure>
+<p>適当にデータを作成する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># psql実行</span></span><br><span class="line">PS D:\dev\docker&gt; docker run -it --rm --link some-postgres:postgres postgres:9.6 psql -h postgres -U postgres</span><br><span class="line"></span><br><span class="line">psql (9.6.10)</span><br><span class="line">Type <span class="string">"help"</span> <span class="keyword">for</span> <span class="built_in">help</span>.</span><br><span class="line"></span><br><span class="line">postgres=<span class="comment"># create user testuser with password 'testuser';</span></span><br><span class="line">CREATE ROLE</span><br><span class="line">postgres=<span class="comment"># create database test_db owner=testuser;</span></span><br><span class="line">CREATE DATABASE</span><br><span class="line">postgres=<span class="comment"># \c test_db</span></span><br><span class="line">You are now connected to database <span class="string">"test_db"</span> as user <span class="string">"postgres"</span>.</span><br><span class="line">test_db=<span class="comment"># \c - testuser</span></span><br><span class="line">You are now connected to database <span class="string">"test_db"</span> as user <span class="string">"testuser"</span>.</span><br><span class="line">test_db=&gt; create table t_user(</span><br><span class="line">test_db(&gt; id <span class="built_in">integer</span> primary key,</span><br><span class="line">test_db(&gt; name varchar(30));</span><br><span class="line">CREATE TABLE</span><br><span class="line">test_db=&gt; insert into t_user values(1,<span class="string">'test'</span>);</span><br><span class="line">INSERT 0 1</span><br></pre></td></tr></table></figure>
+<p>コンテナを削除⇒起動してデータが消えてないことを確認する。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker stop some-postgres</span><br><span class="line">some-postgres</span><br><span class="line">PS D:\dev\docker&gt; docker rm some-postgres</span><br><span class="line">some-postgres</span><br><span class="line">PS D:\dev\docker&gt; docker run --name some-postgres -v pgdata:/var/lib/postgresql/data -p 5432:5432 -d postgres:9.6</span><br><span class="line">45d3e94c977f421233bc734f2dc301c7f327ece1ade4853deed57b686d0f1f70</span><br><span class="line">PS D:\dev\docker&gt; docker run -it --rm --link some-postgres:postgres postgres:9.6 psql -h postgres -U postgres</span><br><span class="line">psql (9.6.10)</span><br><span class="line">Type <span class="string">"help"</span> <span class="keyword">for</span> <span class="built_in">help</span>.</span><br><span class="line"></span><br><span class="line">postgres=<span class="comment"># \l</span></span><br><span class="line">                                 List of databases</span><br><span class="line">   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges</span><br><span class="line">-----------+----------+----------+------------+------------+-----------------------</span><br><span class="line"> postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |</span><br><span class="line"> template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +</span><br><span class="line">           |          |          |            |            | postgres=CTc/postgres</span><br><span class="line"> template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +</span><br><span class="line">           |          |          |            |            | postgres=CTc/postgres</span><br><span class="line"> test_db   | testuser | UTF8     | en_US.utf8 | en_US.utf8 |</span><br><span class="line">(4 rows)</span><br><span class="line"></span><br><span class="line">postgres=<span class="comment"># \c test_db</span></span><br><span class="line">You are now connected to database <span class="string">"test_db"</span> as user <span class="string">"postgres"</span>.</span><br><span class="line">test_db=<span class="comment"># \c - testuser</span></span><br><span class="line">You are now connected to database <span class="string">"test_db"</span> as user <span class="string">"testuser"</span>.</span><br><span class="line">test_db=&gt; select * from t_user;</span><br><span class="line"> id | name</span><br><span class="line">----+------</span><br><span class="line">  1 | <span class="built_in">test</span></span><br><span class="line">(1 row)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Apacheでバインドマウント"><a href="#Apacheでバインドマウント" class="headerlink" title="Apacheでバインドマウント"></a>Apacheでバインドマウント</h2><p>「/usr/local/apache2/htdocs」をバインドマウントして、<br>HTMLをWindowsホストから編集できるようにする。</p>
+<p>バインドマウントはボリュームと同じ-vオプションを使用するが、<br>ボリューム名ではなくホスト側のフルパスとなる。<br>「-v (ホストのフルパス):（コンテナのフルパス）」</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name apache -d -p 80:80 -v /c/Users/（ユーザ名）/docker_volumes/apache/htdocs:/usr/<span class="built_in">local</span>/apache2/htdocs httpd</span><br></pre></td></tr></table></figure>
+<p>※バインド先「C:\Users\（ユーザ名）\docker_volumes\apache\htdocs」</p>
+<p>index.htmlを作成してローカルに配置する。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    TEST!</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ブラウザで確認する。</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1kVuAvXr8cLqhrzyuusW53zNbCUkRICdF" alt=""></p>
+<p><br></p>
+<h2 id="ボリュームの削除"><a href="#ボリュームの削除" class="headerlink" title="ボリュームの削除"></a>ボリュームの削除</h2><p>docker volume rm (ボリュームラベル名)<br>を用いる。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker volume ls</span><br><span class="line">DRIVER              VOLUME NAME</span><br><span class="line">local               pgdata</span><br><span class="line">PS D:\dev\docker&gt; docker volume rm pgdata</span><br><span class="line">pgdata</span><br><span class="line">PS D:\dev\docker&gt; docker volume ls</span><br><span class="line">DRIVER              VOLUME NAME</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/仮想化/">仮想化</a></li></ul>
+
+      
+        
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexo-site/2018/09/29/docker-20180929-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker入門：インストールと基本操作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ボリュームについて"><span class="nav-number">1.</span> <span class="nav-text">ボリュームについて</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#バインドマウントについて"><span class="nav-number">2.</span> <span class="nav-text">バインドマウントについて</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PostgreSQLでボリューム作成"><span class="nav-number">3.</span> <span class="nav-text">PostgreSQLでボリューム作成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apacheでバインドマウント"><span class="nav-number">4.</span> <span class="nav-text">Apacheでバインドマウント</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ボリュームの削除"><span class="nav-number">5.</span> <span class="nav-text">ボリュームの削除</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Tech-Tutorial All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              <span id="busuanzi_value_site_uv"></span>
+              <span id="busuanzi_value_site_pv"></span>
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
+  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/hexo-site/js/script.js"></script>
+<script src="/hexo-site/js/bootstrap.js"></script>
+<script src="/hexo-site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!--	
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+-->	
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+</body>
+</html>
