@@ -1,137 +1,228 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+    
 <head>
-  <meta charset="utf-8">
-  
-  <title>Docker入門：インストールと基本操作 | Tech-Tutorial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="仮想化Docker" />
-  
-  
-  
-  
-  <meta name="keywords" content="仮想化,Docker">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker入門：インストールと基本操作">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Tech-Tutorial">
+    <title>Docker入門：②インストールと基本操作 - Tech-Tutorial</title>
+    <meta name="author" content="Satoshi Ichimaru">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/hexo-site/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"articleBody":"　\nDockerインストール（Windows）Windows版のDockerは、２つのバージョンがある。\n・Docker for Windows　Window 10 Professionalで導入する。　DockerマシンはHyper-Vで作成する。　公式はこちらを推奨している。\n　下記のサイトからインストーラをダウンロードしてインストールする。　https://www.docker.com/products/docker-desktop　・Docker Toolbox　Windows 10 Home以下のOSで導入する。　DockerマシンはVirtualBoxで作成する（HomeではHyper-Vが利用できない）\n　下記のサイトからインストーラをダウンロードしてインストールする。　https://docs.docker.com/toolbox/toolbox_install_windows/\nこちらの環境はWindows 10 Homeのため、Docker Toolboxを用いて説明を行う。\nDocker構成\n・Windowsマシン（Windowsホスト）　Dockerをインストールしたマシン。　VirtualBox（Proの場合はHyper-V）をDockerマシンを作成する。　Dockerクライアントを用いてDockerマシンを操作する。\n・Dockerマシン（Dockerホスト）　Dockerコンテナを管理する仮想マシン。\n・Dockerイメージ　コンテナを構成するイメージファイル。　イメージはDockerリポジトリからダウンロードする。　・Dockerコンテナ　Dockerイメージから作成される仮想コンテナ。\n・Docker Hub　Dockerイメージを管理するクラウドリポジトリ。　https://hub.docker.com/\n\nDockerマシン作成まずはDockerマシンを作成する。PowerShellで操作を行う。マシン名はtest-machineとする。\n1234567891011# Docker Mahcine　一覧コマンドPS D:\\dev\\docker&gt; docker-machine lsNAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS# Docker Mahcine　作成PS D:\\dev\\docker&gt; docker-machine create test-machineRunning pre-create checks...Creating machine...（省略）PS D:\\dev\\docker&gt; docker-machine lsNAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORStest-machine   -        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce\nアクティブ化してDockerクライアントで操作できるようにする。docker-machine env～で環境変数を取得して、一番最後に出力される「&amp;～|Invoke-Expression」を実行する。docker-machine ls でActiveに*がついていれば完了。\n12345678PS D:\\dev\\docker&gt; docker-machine env test-machine --shell powershell（省略）# Run this command to configure your shell:# &amp; \"D:\\Installs\\Docker Toolbox\\docker-machine.exe\" env test-machine --shell powershell | Invoke-ExpressionPS D:\\dev\\docker&gt; &amp; \"D:\\Installs\\Docker Toolbox\\docker-machine.exe\" env test-machine --shell powershell | Invoke-ExpressionPS D:\\dev\\docker&gt; docker-machine lsNAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORStest-machine   *        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce\n\nDockerコンテナの作成次にDockerコンテナを作成する。ここではApacheをインストールして動作確認を行う。\n手順）　・Docker Hubでイメージを確認　・イメージの取得（docker pull）　・コンテナの作成（docker create）　・コンテナの起動（docker start）　・コンテナの起動２（docker run）\n\nDocker Hubでイメージを確認　コンテナを作成するにはイメージが必要なので、　Docker Hub( https://hub.docker.com/ )からhttpdを検索してイメージの情報を確認する。\n\nイメージの取得（docker pull）　docker pullでイメージのダウンロードを行う。\n12345678910111213141516171819# Apache Imageの取得PS D:\\dev\\docker&gt; docker pull httpdUsing default tag: latestlatest: Pulling from library/httpdf189db1b88b3: Pull completeba2d31d4e2e7: Pull complete23a65f5e3746: Pull complete5e8eccbd4bc6: Pull complete4c145eec18d8: Pull completec64fd93430a0: Pull completec9efc31823a2: Pull completeDigest: sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23Status: Downloaded newer image for httpd:latestPS D:\\dev\\docker&gt;# Imageの一覧PS D:\\dev\\docker&gt; docker imagesREPOSITORY          TAG                 IMAGE ID            CREATED             SIZEhttpd               latest              dabb52744997        2 days ago          178MBPS D:\\dev\\docker&gt;\n\nコンテナの作成（docker create）docker createでコンテナを作成する。「–name apache」でコンテナに名前を付ける。「-p 8081:80」でポートフォワードを行う。（DockerホストIP）:8081⇒（コンテナIP）:80でフォワードする。\n12345678# Apacheコンテナを作成PS D:\\dev\\docker&gt; docker create --name apache -p 8081:80 httpd7c725ff3a73331f2dafad9da4b11748a6ee86b965c7c24a696ae6e53a018325c# コンテナ一覧（停止中も含める）PS D:\\dev\\docker&gt; docker ps -aCONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS               NAMES7c725ff3a733        httpd               \"httpd-foreground\"   6 seconds ago       Created                                 apachePS D:\\dev\\docker&gt;\n\nコンテナの起動（docker start）docker startでコンテナ名を指定して起動する。\n# Apacheコンテナを起動PS D:\\dev\\docker&gt; docker start apacheapache# コンテナ一覧（起動中のみ）PS D:\\dev\\docker&gt; docker psCONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                  NAMES7c725ff3a733        httpd               \"httpd-foreground\"   7 minutes ago       Up 3 seconds        0.0.0.0:8081-&gt;80/tcp   apachePS D:\\dev\\docker&gt;\nブラウザで「（DockerホストIP）:8081」で画面が表示されるか確認する。なお、DockerホストのIPは「docker-machine ls」か「docker-machine ip test-machine」で確認できる。\n\n\nコンテナの起動２（docker run）docker runは、docker pull ⇒ docker create ⇒ docker startを一括で行ってくれるコマンド。特に理由がないなら、こちらを利用したほうが効率が良い。なお、上記のapacheをdocker runで起動する場合は\ndocker run --name apache -d -p 8081:80 httpd\nとなる。注意するのは、docker createはデタッチモードで作成されるが、docker runはアタッチモードで作成される。そのため、デーモン実行する場合は「-d」を付与する。\n\n起動中のDockerコンテナにアタッチ起動中のDockerコンテナを操作する場合、docker execでシェルを実行すれば侵入できる。その際、STDINを開き、疑似ターミナル (pseudo-TTY) を割り当てる必要がある。そのオプションが「-i」と「-t」となる。\nPS D:\\dev\\docker&gt; docker exec -it apache /bin/bashroot@7c725ff3a733:/usr/local/apache2# lsbin  build  cgi-bin  conf  error  htdocs  icons  include  logs  modulesroot@7c725ff3a733:/usr/local/apache2#\n\nコンテナ停止、削除docker stopとdocker rmを用いる。\nPS D:\\dev\\docker&gt; docker stop apacheapachePS D:\\dev\\docker&gt; docker rm apacheapache\n注意）コンテナの削除を行うとコンテナ内のデータは削除される。例えば、データベースコンテナを削除するとテーブルやデータは全て初期化される。これはDocker Volume機能を用いて、ホスト側でデータを作成すれば解決する。\n\nイメージの削除docker rmiでイメージを削除する。パラメータにはIMAGE IDを指定する。\nPS D:\\dev\\docker&gt; docker imagesREPOSITORY          TAG                 IMAGE ID            CREATED             SIZEhttpd               latest              dabb52744997        2 days ago          178MBPS D:\\dev\\docker&gt; docker rmi dabb52744997Untagged: httpd:latestUntagged: httpd@sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23Deleted: sha256:dabb527449975533d6eea937e5a0123ed1b57b16d921b7b4346a3cf367751615Deleted: sha256:5d49a3f053113d87d691d2522f9c0277ffd18cabcce0d66c684099e1247afeceDeleted: sha256:eaa99c16f7c88d1e682bcf28bddfe2fc2af60578976c649e7682f8285b61e3dbDeleted: sha256:508679f3525982886ebd38e574f94503859b6dcecc16b4905e96162f9e3676c2Deleted: sha256:ea41f37c700199a74899df991c29276c58d47855b9366d0afaeec94f9b40b693Deleted: sha256:907e44cd08b8d5d3579acad7aafc3f9e7cbe4fef06e661fffd9d0bbfe0acfd9aDeleted: sha256:b5a1919e63f10b3e8057ca92fd414c7eb93bf06aa0a797701f5d598e35a811d5Deleted: sha256:8c466bf4ca6ffdda8b7717b1cd6fe31109529ee64e626a003a224fb8bd2bc469PS D:\\dev\\docker&gt;\n\nよく使うDockerコマンド一覧http://docs.docker.jp/engine/reference/commandline/index.html#docker-management-commands\nDocker Machine\n\n\nコマンド\n説明\n\n\n\n\ndocker-machine ls\nDockerマシン一覧\n\n\ndocker-machine create [name]\nDockerマシンを作成するHyper-Vではオプションに–driver hypervが必要\n\n\ndocker-machine rm [name]\nDockerマシンを削除する\n\n\ndocker-machine start [name]\nDockerマシンを実行する\n\n\ndocker-machine stop [name]\nDockerマシンを停止する\n\n\ndocker-machine env [name] —shell powershell\nDocker環境変数の取得を行う\n\n\ndocker-machine ssh [name]\nDockerマシンにssh接続を行う\n\n\n\n\nDocker イメージ\n\n\nコマンド\n説明\n\n\n\n\ndocker images\nイメージの一覧　　　　　　　　\n\n\ndocker pull [repositoryName:tag]\nイメージを取り込み\n\n\ndocker rmi [image]\nイメージの削除\n\n\n\n\nDocker コンテナ\n\n\nコマンド\n説明\n\n\n\n\ndocker ps\nコンテナ一覧-aで停止中も表示\n\n\ndocker create [image]\nコンテナの作成–name：コンテナ名-p ポートフォワード\n\n\ndocker start [container]\nコンテナの実行\n\n\ndocker run [image]\npull,create,startのセットコマンド\n\n\ndocker stop [container]\nコンテナの停止\n\n\ndocker rm [container]\nコンテナの削除\n\n\ndocker exec [container][command]\nコンテナのコマンド実行コンテナアタッチ：-it /bin/bash\n\n\ndocker inspect [container]\nコンテナ情報の表示\n\n\ndocker volume ls\nボリューム一覧\n\n\ndocker volume rm [volume]\nボリューム削除\n\n\n\n","dateCreated":"2018-09-29T00:54:53+09:00","dateModified":"2018-10-02T22:03:05+09:00","datePublished":"2018-09-29T00:54:53+09:00","description":"　","headline":"Docker入門：②インストールと基本操作","image":["https://www.docker.com/sites/default/files/mono-vertical.png","cover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/"},"publisher":{"@type":"Organization","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"url":"https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/","keywords":"仮想化, Docker","thumbnailUrl":"https://www.docker.com/sites/default/files/mono-vertical.png"}</script>
+    <meta name="keywords" content="仮想化,Docker">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Docker入門：②インストールと基本操作">
 <meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/index.html">
 <meta property="og:site_name" content="Tech-Tutorial">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/2018/09/27/docker-20180927-1/docker-title.jpg">
-<meta property="og:updated_time" content="2018-09-28T22:59:51.942Z">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1YAUNa4AS07vHKIdqy2TwWTh40-RgKwHh">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1xPYkO8UZ81ugERks7GGP114W5j4ttJLy">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1lkVMK_13WDnHpiakl90VkdW-d865J-95">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1I4R1lOOnRngw49ssRWHjzYrLJHsFGCcx">
+<meta property="og:updated_time" content="2018-10-02T13:03:05.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker入門：インストールと基本操作">
-<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/2018/09/27/docker-20180927-1/docker-title.jpg">
-  
-  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+<meta name="twitter:title" content="Docker入門：②インストールと基本操作">
+<meta name="twitter:image" content="http://drive.google.com/uc?export=view&id=1YAUNa4AS07vHKIdqy2TwWTh40-RgKwHh">
     
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://www.docker.com/sites/default/files/mono-vertical.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://www.docker.com/sites/default/files/mono-vertical.png" />
+    
+    
+        <meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/cover.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/cover.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/hexo-site/assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css">
+    <!--STYLES END-->
+    
 
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  <link rel="stylesheet" href="/hexo-site/css/style.css">
-
-  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
-  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
-  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
-
+    
 </head>
 
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
 
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+    
 
-
-  
-
-
-<header id="allheader" class="site-header" role="banner" 
-   >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
-            
-          </h1>
-          
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/hexo-site/ ">Tech-Tutorial</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+        </a>
+    
 </header>
 
+            <!-- Define author's picture -->
 
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
         
-          <section id="main" style="float:none;"><article id="post-docker-20180929-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/ "
+                            
+                            title="ホーム"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">ホーム</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-categories"
+                            
+                            title="カテゴリー"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">カテゴリー</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-tags"
+                            
+                            title="タグ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">タグ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-archives"
+                            
+                            title="アーカイブ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">アーカイブ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="プロフィール"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">プロフィール</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/s-ichimaru" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    post-header-cover--partial"
+             style="background-image:url('/hexo-site/2018/09/29/docker-20180929-1/cover.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
+        <h1 class="post-title">
+            Docker入門：②インストールと基本操作
+        </h1>
     
-      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" rel="gallery_cjmo0kkli000glots2h9k5c8g">
-        <img src="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" itemprop="image">
-      </a>
     
-  </div>
+        <div class="post-meta">
+    <time datetime="2018-09-29T00:54:53+09:00">
+	
+		    2018/09/29
+    	
+    </time>
+    
+        <span>カテゴリー </span>
+        
+    <a class="category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+
+
+    
 </div>
 
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      Docker入門：インストールと基本操作
-    </h1>
-  
+</div>
 
-      </header>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
     
-    <div class="article-meta">
-      
-	<a href="/hexo-site/2018/09/29/docker-20180929-1/" class="article-date">
-	  <time datetime="2018-09-28T15:54:53.000Z" itemprop="datePublished">September 29, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
- 
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　<br><a id="more"></a></p>
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>　<br><a id="more"></a></p>
 <h2 id="Dockerインストール（Windows）"><a href="#Dockerインストール（Windows）" class="headerlink" title="Dockerインストール（Windows）"></a>Dockerインストール（Windows）</h2><p>Windows版のDockerは、２つのバージョンがある。</p>
 <p>・Docker for Windows<br>　Window 10 Professionalで導入する。<br>　DockerマシンはHyper-Vで作成する。<br>　公式はこちらを推奨している。</p>
 <p>　下記のサイトからインストーラをダウンロードしてインストールする。<br>　<a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">https://www.docker.com/products/docker-desktop</a><br>　<br>・Docker Toolbox<br>　Windows 10 Home以下のOSで導入する。<br>　DockerマシンはVirtualBoxで作成する（HomeではHyper-Vが利用できない）</p>
@@ -144,9 +235,9 @@
 <p>・Docker Hub<br>　Dockerイメージを管理するクラウドリポジトリ。<br>　<a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></p>
 <p><br></p>
 <h2 id="Dockerマシン作成"><a href="#Dockerマシン作成" class="headerlink" title="Dockerマシン作成"></a>Dockerマシン作成</h2><p>まずはDockerマシンを作成する。<br>PowerShellで操作を行う。マシン名はtest-machineとする。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Docker Mahcine　一覧コマンド</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS</span><br><span class="line"><span class="comment"># Docker Mahcine　作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine create <span class="built_in">test</span>-machine</span><br><span class="line">Running pre-create checks...</span><br><span class="line">Creating machine...</span><br><span class="line">（省略）</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   -        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Docker Mahcine　一覧コマンド</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME   ACTIVE   DRIVER   STATE   URL   SWARM   DOCKER   ERRORS</span><br><span class="line"><span class="comment"># Docker Mahcine　作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker-machine create <span class="built_in">test</span>-machine</span><br><span class="line">Running pre-create checks...</span><br><span class="line">Creating machine...</span><br><span class="line">（省略）</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   -        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
 <p>アクティブ化してDockerクライアントで操作できるようにする。<br>docker-machine env～で環境変数を取得して、一番最後に出力される「&amp;～|Invoke-Expression」を実行する。docker-machine ls でActiveに*がついていれば完了。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker-machine env <span class="built_in">test</span>-machine --shell powershell</span><br><span class="line">（省略）</span><br><span class="line"><span class="comment"># Run this command to configure your shell:</span></span><br><span class="line"><span class="comment"># &amp; "D:\Installs\Docker Toolbox\docker-machine.exe" env test-machine --shell powershell | Invoke-Expression</span></span><br><span class="line">PS D:\dev\docker&gt; &amp; <span class="string">"D:\Installs\Docker Toolbox\docker-machine.exe"</span> env <span class="built_in">test</span>-machine --shell powershell | Invoke-Expression</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   *        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PS D:\dev\docker&gt; docker-machine env <span class="built_in">test</span>-machine --shell powershell</span><br><span class="line">（省略）</span><br><span class="line"><span class="comment"># Run this command to configure your shell:</span></span><br><span class="line"><span class="comment"># &amp; "D:\Installs\Docker Toolbox\docker-machine.exe" env test-machine --shell powershell | Invoke-Expression</span></span><br><span class="line">PS D:\dev\docker&gt; &amp; <span class="string">"D:\Installs\Docker Toolbox\docker-machine.exe"</span> env <span class="built_in">test</span>-machine --shell powershell | Invoke-Expression</span><br><span class="line">PS D:\dev\docker&gt; docker-machine ls</span><br><span class="line">NAME           ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS</span><br><span class="line"><span class="built_in">test</span>-machine   *        virtualbox   Running   tcp://192.168.99.100:2376           v18.06.1-ce</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h2 id="Dockerコンテナの作成"><a href="#Dockerコンテナの作成" class="headerlink" title="Dockerコンテナの作成"></a>Dockerコンテナの作成</h2><p>次にDockerコンテナを作成する。<br>ここではApacheをインストールして動作確認を行う。</p>
 <p>手順）<br>　・Docker Hubでイメージを確認<br>　・イメージの取得（docker pull）<br>　・コンテナの作成（docker create）<br>　・コンテナの起動（docker start）<br>　・コンテナの起動２（docker run）</p>
@@ -154,10 +245,10 @@
 <h3 id="Docker-Hubでイメージを確認"><a href="#Docker-Hubでイメージを確認" class="headerlink" title="Docker Hubでイメージを確認"></a>Docker Hubでイメージを確認</h3><p>　コンテナを作成するにはイメージが必要なので、<br>　Docker Hub( <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a> )からhttpdを検索してイメージの情報を確認する。<br><img src="http://drive.google.com/uc?export=view&amp;id=1xPYkO8UZ81ugERks7GGP114W5j4ttJLy" alt=""><br><img src="http://drive.google.com/uc?export=view&amp;id=1lkVMK_13WDnHpiakl90VkdW-d865J-95" alt=""></p>
 <p><br></p>
 <h3 id="イメージの取得（docker-pull）"><a href="#イメージの取得（docker-pull）" class="headerlink" title="イメージの取得（docker pull）"></a>イメージの取得（docker pull）</h3><p>　docker pullでイメージのダウンロードを行う。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apache Imageの取得</span></span><br><span class="line">PS D:\dev\docker&gt; docker pull httpd</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/httpd</span><br><span class="line">f189db1b88b3: Pull complete</span><br><span class="line">ba2d31d4e2e7: Pull complete</span><br><span class="line">23a65f5e3746: Pull complete</span><br><span class="line">5e8eccbd4bc6: Pull complete</span><br><span class="line">4c145eec18d8: Pull complete</span><br><span class="line">c64fd93430a0: Pull complete</span><br><span class="line">c9efc31823a2: Pull complete</span><br><span class="line">Digest: sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> httpd:latest</span><br><span class="line">PS D:\dev\docker&gt;</span><br><span class="line"><span class="comment"># Imageの一覧</span></span><br><span class="line">PS D:\dev\docker&gt; docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">httpd               latest              dabb52744997        2 days ago          178MB</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apache Imageの取得</span></span><br><span class="line">PS D:\dev\docker&gt; docker pull httpd</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/httpd</span><br><span class="line">f189db1b88b3: Pull complete</span><br><span class="line">ba2d31d4e2e7: Pull complete</span><br><span class="line">23a65f5e3746: Pull complete</span><br><span class="line">5e8eccbd4bc6: Pull complete</span><br><span class="line">4c145eec18d8: Pull complete</span><br><span class="line">c64fd93430a0: Pull complete</span><br><span class="line">c9efc31823a2: Pull complete</span><br><span class="line">Digest: sha256:81bc5f68f994a3c7bffc5d6ecba9e4fde70488c43ee8d57846a45c4995c67a23</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> httpd:latest</span><br><span class="line">PS D:\dev\docker&gt;</span><br><span class="line"><span class="comment"># Imageの一覧</span></span><br><span class="line">PS D:\dev\docker&gt; docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">httpd               latest              dabb52744997        2 days ago          178MB</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h3 id="コンテナの作成（docker-create）"><a href="#コンテナの作成（docker-create）" class="headerlink" title="コンテナの作成（docker create）"></a>コンテナの作成（docker create）</h3><p>docker createでコンテナを作成する。<br>「–name apache」でコンテナに名前を付ける。<br>「-p 8081:80」でポートフォワードを行う。（DockerホストIP）:8081⇒（コンテナIP）:80でフォワードする。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apacheコンテナを作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker create --name apache -p 8081:80 httpd</span><br><span class="line">7c725ff3a73331f2dafad9da4b11748a6ee86b965c7c24a696ae6e53a018325c</span><br><span class="line"><span class="comment"># コンテナ一覧（停止中も含める）</span></span><br><span class="line">PS D:\dev\docker&gt; docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS               NAMES</span><br><span class="line">7c725ff3a733        httpd               <span class="string">"httpd-foreground"</span>   6 seconds ago       Created                                 apache</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apacheコンテナを作成</span></span><br><span class="line">PS D:\dev\docker&gt; docker create --name apache -p 8081:80 httpd</span><br><span class="line">7c725ff3a73331f2dafad9da4b11748a6ee86b965c7c24a696ae6e53a018325c</span><br><span class="line"><span class="comment"># コンテナ一覧（停止中も含める）</span></span><br><span class="line">PS D:\dev\docker&gt; docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS               NAMES</span><br><span class="line">7c725ff3a733        httpd               <span class="string">"httpd-foreground"</span>   6 seconds ago       Created                                 apache</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h3 id="コンテナの起動（docker-start）"><a href="#コンテナの起動（docker-start）" class="headerlink" title="コンテナの起動（docker start）"></a>コンテナの起動（docker start）</h3><p>docker startでコンテナ名を指定して起動する。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Apacheコンテナを起動</span></span><br><span class="line">PS D:\dev\docker&gt; docker start apache</span><br><span class="line">apache</span><br><span class="line"><span class="comment"># コンテナ一覧（起動中のみ）</span></span><br><span class="line">PS D:\dev\docker&gt; docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">7c725ff3a733        httpd               <span class="string">"httpd-foreground"</span>   7 minutes ago       Up 3 seconds        0.0.0.0:8081-&gt;80/tcp   apache</span><br><span class="line">PS D:\dev\docker&gt;</span><br></pre></td></tr></table></figure>
@@ -292,164 +383,532 @@
 </tbody>
 </table>
 
-      
+            
+
+        </div>
     </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/仮想化/">仮想化</a></li></ul>
-
-      
+    <div id="post-footer" class="post-footer main-content-wrap">
         
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">タグ</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/Docker/">Docker</a> <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/仮想化/">仮想化</a>
 
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/hexo-site/2018/09/30/docker-20180930-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+            </div>
         
-          Docker入門：ボリュームとバインドマウント
         
-      </div>
-    </a>
-  
-  
-    <a href="/hexo-site/2018/09/27/docker-20180927-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Docker入門：概要</div>
-    </a>
-  
-</nav>
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/30/docker-20180930-1/" data-tooltip="Docker入門：③ボリュームとバインドマウント" aria-label="前: Docker入門：③ボリュームとバインドマウント">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/27/docker-20180927-1/" data-tooltip="Docker入門：①概要" aria-label="次: Docker入門：①概要">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-  
+
+        
+        
+            
+        
+    </div>
 </article>
 
-<!-- Table of Contents -->
 
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerインストール（Windows）"><span class="nav-number">1.</span> <span class="nav-text">Dockerインストール（Windows）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker構成"><span class="nav-number">2.</span> <span class="nav-text">Docker構成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerマシン作成"><span class="nav-number">3.</span> <span class="nav-text">Dockerマシン作成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerコンテナの作成"><span class="nav-number">4.</span> <span class="nav-text">Dockerコンテナの作成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-Hubでイメージを確認"><span class="nav-number">4.1.</span> <span class="nav-text">Docker Hubでイメージを確認</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#イメージの取得（docker-pull）"><span class="nav-number">4.2.</span> <span class="nav-text">イメージの取得（docker pull）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの作成（docker-create）"><span class="nav-number">4.3.</span> <span class="nav-text">コンテナの作成（docker create）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの起動（docker-start）"><span class="nav-number">4.4.</span> <span class="nav-text">コンテナの起動（docker start）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#コンテナの起動２（docker-run）"><span class="nav-number">4.5.</span> <span class="nav-text">コンテナの起動２（docker run）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#起動中のDockerコンテナにアタッチ"><span class="nav-number">5.</span> <span class="nav-text">起動中のDockerコンテナにアタッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンテナ停止、削除"><span class="nav-number">6.</span> <span class="nav-text">コンテナ停止、削除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#イメージの削除"><span class="nav-number">7.</span> <span class="nav-text">イメージの削除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#よく使うDockerコマンド一覧"><span class="nav-number">8.</span> <span class="nav-text">よく使うDockerコマンド一覧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-Machine"><span class="nav-number">8.1.</span> <span class="nav-text">Docker Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-イメージ"><span class="nav-number">8.2.</span> <span class="nav-text">Docker イメージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-コンテナ"><span class="nav-number">8.3.</span> <span class="nav-text">Docker コンテナ</span></a></li></ol></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
 
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2018 Tech-Tutorial All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              <span id="busuanzi_value_site_uv"></span>
-              <span id="busuanzi_value_site_pv"></span>
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Satoshi Ichimaru. All Rights Reserved.
+    </span>
 </footer>
 
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/30/docker-20180930-1/" data-tooltip="Docker入門：③ボリュームとバインドマウント" aria-label="前: Docker入門：③ボリュームとバインドマウント">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/27/docker-20180927-1/" data-tooltip="Docker入門：①概要" aria-label="次: Docker入門：①概要">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-<!-- min height -->
 
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-times"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebookで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitterで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+で共有</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+            
+        </div>
+        
 
 
-    <!-- headerblur min height -->
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Satoshi Ichimaru</h4>
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">見つかりませんでした。</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <img class="media-image" src="http://drive.google.com/uc?export=view&amp;id=1ARHVfA7Op9YPsuDrzygq7I2_QxQWm5VG" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <h3 class="media-heading">Dojo Toolkit入門</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月9日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <img class="media-image" src="https://cdn.worldvectorlogo.com/logos/intellij-idea-1.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <h3 class="media-heading">IntelliJ IDEAを試してみる</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月12日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <h3 class="media-heading">AWS入門：①AWS概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月15日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <h3 class="media-heading">AWS入門：②料金見積</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <h3 class="media-heading">AWS入門：③アカウント登録</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <h3 class="media-heading">AWS入門：④Amazon FC2(Amazon Linux)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <img class="media-image" src="https://www.jhipster.tech/images/logo/logo-jhipster.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <h3 class="media-heading">JHipster入門：概要とシンプルアプリ構築</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <h3 class="media-heading">Docker入門：①概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <h3 class="media-heading">Docker入門：②インストールと基本操作</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月29日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <h3 class="media-heading">Docker入門：③ボリュームとバインドマウント</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="見つかりませんでした。"
+                data-message-one="1件見つかりました。"
+                data-message-other="{n} 件見つかりました。">
+                10 件見つかりました。
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/hexo-site/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/hexo-site/assets/js/script-vufjrm3fmbuttogo1hxuu0w9w0sesk5iyysjuguc2hdhufot9szxg8twijry.min.js"></script>
+<!--SCRIPTS END-->
+
     
-    
-</script>
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
-  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
-  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('Z7A3XW4R2I', '12db1ad54372045549ef465881c17e743');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
 
 
-<script src="/hexo-site/js/script.js"></script>
-<script src="/hexo-site/js/bootstrap.js"></script>
-<script src="/hexo-site/js/main.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-<!--	
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
--->	
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-</body>
+    </body>
 </html>

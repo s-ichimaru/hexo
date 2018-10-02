@@ -1,144 +1,235 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+    
 <head>
-  <meta charset="utf-8">
-  
-  <title>Docker入門：概要 | Tech-Tutorial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="仮想化Docker" />
-  
-  
-  
-  
-  <meta name="keywords" content="仮想化,Docker">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker入門：概要">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Tech-Tutorial">
+    <title>Docker入門：①概要 - Tech-Tutorial</title>
+    <meta name="author" content="Satoshi Ichimaru">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/hexo-site/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"articleBody":"　\nDockerとはhttps://www.docker.com/\nDocker（ドッカー[2]）はコンテナ型の仮想化環境を提供するオープンソースソフトウェアである[3]。VMware製品などの完全仮想化を行うハイパーバイザ型製品と比べて、ディスク使用量は少なく、仮想環境 (インスタンス) 作成や起動は速く、性能劣化がほとんどないという利点を持つ。\nwikipedia,ja.wikipedia.org/wiki/Docker\n仮想化は古くからある技術であり、主にサーバのリソースを有効活用するために用いられる。1台のマシンに複数のOSを立ち上げて、あたかも複数のマシンが動作しているように見せる仕組みだ。仮想化ソフトウェアを用いて、仮想的に立ち上げたマシンを仮想マシン（Virtual Machine：略してVM）と呼ぶ。\n従来の仮想化では、OSが仮想マシンにそのまま乗るため、どうしてもリソースの冗長性が生じる。DockerはLinuxのコンテナ技術を利用して、ホストとなるOSのリソース（カーネル）を使いまわす。つまり、一つのOSで複数のOSが実行しているように見えるわけだ。これにより、非常に軽量な仮想化を実現できる。なお、従来の仮想化をホスト型仮想化、Dockerをコンテナ型仮想化と呼ぶ。\n参考）https://knowledge.sakura.ad.jp/13265/\nコンテナ型仮想化は良いこと尽くしというわけではない。ホスト型仮想化は仮想マシンが独立しており分離レベルが高い。コンテナ型は分離レベルが低いため、セキュリティ等に問題があった場合は全てのマシンに影響する。さらにコンテナ型仮想化はカーネルに依存するため、LinuxのDockerにWindowsを入れることはできない。\n\nDockerの用途従来のサーバ仮想化はもちろんのこと、軽量化により開発マシンにも適用されることが多くなってきている。開発ではプロジェクトごとに異なるプログラム実行環境、データベースなどをインストールして作業を行うが、管理が煩雑になったり、異なるバージョンの共存が困難だったりと問題となることがある。そもそも環境構築の負担も高い。\n\nDockerを用いて、開発環境を仮想化することで管理が非常に楽になる。仮想マシンの作成、削除ならびにコンテナの作成、削除が容易で高速なため、不要となった環境を削除、必要になったら作成と手軽に行うとこが可能だ。\n\nなお、Docker環境をパブリッククラウドにデプロイすることもできる。これにより、開発環境は本番環境と同じ構成で作業を行える。注意：下記の例ではRDBもDockerに含めているが、実際はAmazon RDSを用いたほうが良い。DockerはDisk I/Oの多いRDBや、サーバ間の双方向のネットワーク通信が必要となる分散ストレージは不向きとされているらしい。Dockerの本番運用は十分な検討が必要。\n\n\nDockerのEdition・Docker Community Edition(Docke CE)　無償版Docker　基本的なDocker機能は利用できる。　Stable版（四半期ごとのリリース）とEdge版（一か月ごとのリリース）に分かれる。　\n・Docker Enterprise Edition(Docker EE)　有償版Docker　Docker社が認定したコンテナやプラグインが利用可能。　プライベートリポジトリを利用できる。　イメージのセキュリティスキャンが行われる。　四半期ごとのリリース。　など\n\nDockerのバージョン表記17.10.0-ce　⇒　2017/10にリリースされたDocker Community Edition17.10.0-ee　⇒　2017/10にリリースされたDocker Enterprise Edition\n\n参考・Docker ドキュメント日本語化プロジェクト　http://docs.docker.jp/\n・Docker入門（第一回）～Dockerとは何か、何が良いのか～　https://knowledge.sakura.ad.jp/13265/\n・ゼロからはじめる Dockerによるアプリケーション実行環境構築　https://www.udemy.com/docker-k/\n","dateCreated":"2018-09-27T00:00:29+09:00","dateModified":"2018-10-02T22:06:51+09:00","datePublished":"2018-09-27T00:00:29+09:00","description":"　","headline":"Docker入門：①概要","image":["https://www.docker.com/sites/default/files/mono-vertical.png","cover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/"},"publisher":{"@type":"Organization","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"url":"https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/","keywords":"仮想化, Docker","thumbnailUrl":"https://www.docker.com/sites/default/files/mono-vertical.png"}</script>
+    <meta name="keywords" content="仮想化,Docker">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Docker入門：①概要">
 <meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/index.html">
 <meta property="og:site_name" content="Tech-Tutorial">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/2018/09/27/docker-20180927-1/docker-title.jpg">
-<meta property="og:updated_time" content="2018-09-26T22:43:36.073Z">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://knowledge.sakura.ad.jp/images/2018/01/VM_Container-768x437.jpg">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1M8nM-qHnuPvpdlEerPUR4UHRrt2q7n6O">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1y0CwK8EJ-AXWBk86CdljC92edHhEAfkb">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1N0K_OWEVAcbnPWppwT8OWgIpMlryRhsW">
+<meta property="og:updated_time" content="2018-10-02T13:06:51.185Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker入門：概要">
-<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/2018/09/27/docker-20180927-1/docker-title.jpg">
-  
-  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+<meta name="twitter:title" content="Docker入門：①概要">
+<meta name="twitter:image" content="https://knowledge.sakura.ad.jp/images/2018/01/VM_Container-768x437.jpg">
     
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://www.docker.com/sites/default/files/mono-vertical.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://www.docker.com/sites/default/files/mono-vertical.png" />
+    
+    
+        <meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/cover.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/cover.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/hexo-site/assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css">
+    <!--STYLES END-->
+    
 
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  <link rel="stylesheet" href="/hexo-site/css/style.css">
-
-  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
-  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
-  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
-
+    
 </head>
 
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
 
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+    
 
-
-  
-
-
-<header id="allheader" class="site-header" role="banner" 
-   >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
-            
-          </h1>
-          
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/hexo-site/ ">Tech-Tutorial</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+        </a>
+    
 </header>
 
+            <!-- Define author's picture -->
 
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
         
-          <section id="main" style="float:none;"><article id="post-docker-20180927-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/ "
+                            
+                            title="ホーム"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">ホーム</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-categories"
+                            
+                            title="カテゴリー"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">カテゴリー</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-tags"
+                            
+                            title="タグ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">タグ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-archives"
+                            
+                            title="アーカイブ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">アーカイブ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="プロフィール"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">プロフィール</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/s-ichimaru" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    post-header-cover--partial"
+             style="background-image:url('/hexo-site/2018/09/27/docker-20180927-1/cover.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
+        <h1 class="post-title">
+            Docker入門：①概要
+        </h1>
     
-      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" rel="gallery_cjmo0kklo000llots03szbwal">
-        <img src="/hexo-site/2018\09\27\docker-20180927-1\docker-title.jpg" itemprop="image">
-      </a>
     
-  </div>
+        <div class="post-meta">
+    <time datetime="2018-09-27T00:00:29+09:00">
+	
+		    2018/09/27
+    	
+    </time>
+    
+        <span>カテゴリー </span>
+        
+    <a class="category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
+
+
+    
 </div>
 
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      Docker入門：概要
-    </h1>
-  
+</div>
 
-      </header>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
     
-    <div class="article-meta">
-      
-	<a href="/hexo-site/2018/09/27/docker-20180927-1/" class="article-date">
-	  <time datetime="2018-09-26T15:00:29.000Z" itemprop="datePublished">September 27, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
- 
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　<br><a id="more"></a></p>
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>　<br><a id="more"></a></p>
 <h2 id="Dockerとは"><a href="#Dockerとは" class="headerlink" title="Dockerとは"></a>Dockerとは</h2><p><a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com/</a></p>
 <blockquote><p>Docker（ドッカー[2]）はコンテナ型の仮想化環境を提供するオープンソースソフトウェアである[3]。VMware製品などの完全仮想化を行うハイパーバイザ型製品と比べて、ディスク使用量は少なく、仮想環境 (インスタンス) 作成や起動は速く、性能劣化がほとんどないという利点を持つ。</p>
 <footer><strong>wikipedia,</strong><cite><a href="https://ja.wikipedia.org/wiki/Docker" target="_blank" rel="noopener">ja.wikipedia.org/wiki/Docker</a></cite></footer></blockquote>
-<p>仮想化は古くからある技術であり、主にサーバのリソースを有効活用するために用いられる。<br>1台のマシンに複数のOSを立ち上げて、あたかも複数のマシンが動作しているように見せる仕組みだ。<br>仮想化ソフトウェアを用いて、仮想的に立ち上げたマシンを仮想マシン（Virtual Machine：略してVM）と呼ぶ。</p>
-<p>従来の仮想化では、OSが仮想マシンにそのまま乗るため、どうしてもリソースの冗長性が生じる。<br>DockerはLinuxのコンテナ技術を利用して、ホストとなるOSのリソース（カーネル）を使いまわす。<br>つまり、一つのOSで複数のOSが実行しているように見えるわけだ。<br>これにより、非常に軽量な仮想化を実現できる。<br>なお、従来の仮想化をホスト型仮想化、Dockerをコンテナ型仮想化と呼ぶ。</p>
+<p>仮想化は古くからある技術であり、主にサーバのリソースを有効活用するために用いられる。<br>1台のマシンに複数のOSを立ち上げて、あたかも複数のマシンが動作しているように見せる仕組みだ。仮想化ソフトウェアを用いて、仮想的に立ち上げたマシンを仮想マシン（Virtual Machine：略してVM）と呼ぶ。</p>
+<p>従来の仮想化では、OSが仮想マシンにそのまま乗るため、どうしてもリソースの冗長性が生じる。<br>DockerはLinuxのコンテナ技術を利用して、ホストとなるOSのリソース（カーネル）を使いまわす。つまり、一つのOSで複数のOSが実行しているように見えるわけだ。<br>これにより、非常に軽量な仮想化を実現できる。<br>なお、従来の仮想化をホスト型仮想化、Dockerをコンテナ型仮想化と呼ぶ。</p>
 <p><img src="https://knowledge.sakura.ad.jp/images/2018/01/VM_Container-768x437.jpg" alt=""><br>参考）<a href="https://knowledge.sakura.ad.jp/13265/" target="_blank" rel="noopener">https://knowledge.sakura.ad.jp/13265/</a></p>
-<p>コンテナ型仮想化は良いこと尽くしというわけではない。<br>ホスト型仮想化は仮想マシンが独立しており分離レベルが高い。<br>コンテナ型は分離レベルが低いため、セキュリティ等に問題があった場合は全てのマシンに影響する。<br>さらにコンテナ型仮想化はカーネルに依存するため、LinuxのDockerにWindowsを入れることはできない。</p>
+<p>コンテナ型仮想化は良いこと尽くしというわけではない。<br>ホスト型仮想化は仮想マシンが独立しており分離レベルが高い。<br>コンテナ型は分離レベルが低いため、セキュリティ等に問題があった場合は全てのマシンに影響する。さらにコンテナ型仮想化はカーネルに依存するため、LinuxのDockerにWindowsを入れることはできない。</p>
 <p><br></p>
 <h2 id="Dockerの用途"><a href="#Dockerの用途" class="headerlink" title="Dockerの用途"></a>Dockerの用途</h2><p>従来のサーバ仮想化はもちろんのこと、軽量化により開発マシンにも適用されることが多くなってきている。開発ではプロジェクトごとに異なるプログラム実行環境、データベースなどをインストールして作業を行うが、管理が煩雑になったり、異なるバージョンの共存が困難だったりと問題となることがある。そもそも環境構築の負担も高い。</p>
 <p><img src="http://drive.google.com/uc?export=view&amp;id=1M8nM-qHnuPvpdlEerPUR4UHRrt2q7n6O" alt=""></p>
@@ -156,164 +247,532 @@
 <p>・Docker入門（第一回）～Dockerとは何か、何が良いのか～<br>　<a href="https://knowledge.sakura.ad.jp/13265/" target="_blank" rel="noopener">https://knowledge.sakura.ad.jp/13265/</a></p>
 <p>・ゼロからはじめる Dockerによるアプリケーション実行環境構築<br>　<a href="https://www.udemy.com/docker-k/" target="_blank" rel="noopener">https://www.udemy.com/docker-k/</a></p>
 
-      
+            
+
+        </div>
     </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/仮想化/">仮想化</a>, <a class="article-category-link" href="/hexo-site/categories/仮想化/Docker/">Docker</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/仮想化/">仮想化</a></li></ul>
-
-      
+    <div id="post-footer" class="post-footer main-content-wrap">
         
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">タグ</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/Docker/">Docker</a> <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/仮想化/">仮想化</a>
 
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/hexo-site/2018/09/29/docker-20180929-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+            </div>
         
-          Docker入門：インストールと基本操作
         
-      </div>
-    </a>
-  
-  
-    <a href="/hexo-site/2018/09/22/jhipster-20180922-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JHipster入門：概要とシンプルアプリ構築</div>
-    </a>
-  
-</nav>
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/29/docker-20180929-1/" data-tooltip="Docker入門：②インストールと基本操作" aria-label="前: Docker入門：②インストールと基本操作">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/22/jhipster-20180922-1/" data-tooltip="JHipster入門：概要とシンプルアプリ構築" aria-label="次: JHipster入門：概要とシンプルアプリ構築">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-  
+
+        
+        
+            
+        
+    </div>
 </article>
 
-<!-- Table of Contents -->
 
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerとは"><span class="nav-number">1.</span> <span class="nav-text">Dockerとは</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerの用途"><span class="nav-number">2.</span> <span class="nav-text">Dockerの用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DockerのEdition"><span class="nav-number">3.</span> <span class="nav-text">DockerのEdition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerのバージョン表記"><span class="nav-number">4.</span> <span class="nav-text">Dockerのバージョン表記</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
 
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2018 Tech-Tutorial All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              <span id="busuanzi_value_site_uv"></span>
-              <span id="busuanzi_value_site_pv"></span>
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Satoshi Ichimaru. All Rights Reserved.
+    </span>
 </footer>
 
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/29/docker-20180929-1/" data-tooltip="Docker入門：②インストールと基本操作" aria-label="前: Docker入門：②インストールと基本操作">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/22/jhipster-20180922-1/" data-tooltip="JHipster入門：概要とシンプルアプリ構築" aria-label="次: JHipster入門：概要とシンプルアプリ構築">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-<!-- min height -->
 
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-times"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebookで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitterで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+で共有</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+            
+        </div>
+        
 
 
-    <!-- headerblur min height -->
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Satoshi Ichimaru</h4>
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">見つかりませんでした。</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <img class="media-image" src="http://drive.google.com/uc?export=view&amp;id=1ARHVfA7Op9YPsuDrzygq7I2_QxQWm5VG" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <h3 class="media-heading">Dojo Toolkit入門</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月9日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <img class="media-image" src="https://cdn.worldvectorlogo.com/logos/intellij-idea-1.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <h3 class="media-heading">IntelliJ IDEAを試してみる</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月12日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <h3 class="media-heading">AWS入門：①AWS概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月15日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <h3 class="media-heading">AWS入門：②料金見積</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <h3 class="media-heading">AWS入門：③アカウント登録</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <h3 class="media-heading">AWS入門：④Amazon FC2(Amazon Linux)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <img class="media-image" src="https://www.jhipster.tech/images/logo/logo-jhipster.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <h3 class="media-heading">JHipster入門：概要とシンプルアプリ構築</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <h3 class="media-heading">Docker入門：①概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <h3 class="media-heading">Docker入門：②インストールと基本操作</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月29日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <h3 class="media-heading">Docker入門：③ボリュームとバインドマウント</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="見つかりませんでした。"
+                data-message-one="1件見つかりました。"
+                data-message-other="{n} 件見つかりました。">
+                10 件見つかりました。
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/hexo-site/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/hexo-site/assets/js/script-vufjrm3fmbuttogo1hxuu0w9w0sesk5iyysjuguc2hdhufot9szxg8twijry.min.js"></script>
+<!--SCRIPTS END-->
+
     
-    
-</script>
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
-  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
-  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('Z7A3XW4R2I', '12db1ad54372045549ef465881c17e743');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
 
 
-<script src="/hexo-site/js/script.js"></script>
-<script src="/hexo-site/js/bootstrap.js"></script>
-<script src="/hexo-site/js/main.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-<!--	
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
--->	
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-</body>
+    </body>
 </html>

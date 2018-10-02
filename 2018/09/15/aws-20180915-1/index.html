@@ -1,138 +1,225 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+    
 <head>
-  <meta charset="utf-8">
-  
-  <title>はじめてのAWS：①AWS概要 | Tech-Tutorial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="クラウドAWS" />
-  
-  
-  
-  
-  <meta name="keywords" content="クラウド,AWS">
-<meta property="og:type" content="article">
-<meta property="og:title" content="はじめてのAWS：①AWS概要">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Tech-Tutorial">
+    <title>AWS入門：①AWS概要 - Tech-Tutorial</title>
+    <meta name="author" content="Satoshi Ichimaru">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/hexo-site/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"articleBody":"　\nAWSとはAmazon Web Services（アマゾン ウェブ サービス、AWS）とは、Amazon.comにより提供されているクラウドコンピューティングサービス（ウェブサービス）である。これらのサービスは全世界で18の地域に提供されている（2018年現在）。AWSの有名なサービスにAmazon Elastic Compute Cloud (EC2) とAmazon Simple Storage Service (S3) がある。これまでのクライアントが保有していた物理的なサーバファームと比較してAWSは大規模な計算処理能力を速やかに提供出来ることが強みである。\nwikipedia,ja.wikipedia.org/wiki/Amazon_Web_Services\n\n\nAWSサービス概要\n少々古い情報だが見やすいので参考にさせてもらった。参考：http://www.so-net.ne.jp/solution/service/idc/aws.html\n非常にサービスが多いため、主要となるインフラ部分を重点的に整理することにする。\n\n\nコンピューティング\nAmazon EC2：仮想サーバhttps://aws.amazon.com/jp/ec2/\nAmazon Elastic Compute Cloud (Amazon EC2) は、安全でサイズ変更可能なコンピューティング性能をクラウド内で提供するウェブサービス。アプリケーションのニーズに応じて自動的なスケールアップ、スケールダウンを数分以内に実現可能。\n料金体系・オンデマントインスタンス（従量課金制）長期的な契約無しにコンピューティングの性能に対して料金を支払う。\n・リザーブドインスタンス（1年または3年契約の前払い）オンデマントインスタンスの料金に比べて大幅な割引（最大７５％）が受けれる。\n・スポットインスタンス入札式で余ったリソースを使うためオンデマンドよりも安い。需要と供給により価格が変動するため、入札価格が変動価格を上回れば「強制的に削除」される。大量のコンピューティング容量を必要としながら、緊急性は低い場合に便利なオプション。\n料金表https://aws.amazon.com/jp/ec2/pricing/\n\nAmazon ECS：コンテナ管理サービスhttps://aws.amazon.com/jp/ecs/\nAmazon Elastic Container Service (Amazon ECS) は、Docker コンテナをサポートするスケーラビリティに優れた高性能なコンテナ管理サービス。コンテナ化されたアプリケーションをAWSで簡単に実行およびスケールが可能。\n料金体系・Fargate起動タイプモデルコンテナ化されたアプリケーションに必要なvCPU（仮想CPU）とメモリリソースで金額がかかる\n・FC2起動タイプ追加料金は発生しない。アプリケーションを保存、実行するために作成したAWSリソース（FC2インスタンス、FBSボリュームなど）に対して料金が発生する。\n料金表https://aws.amazon.com/jp/ecs/pricing/\n\n\nストレージ\nAmazon S3：オンラインストレージサービスhttps://aws.amazon.com/jp/s3/\nAmazon Simple Storage Service(Amazon S3) とは、Amazon Web Services によって提供されるオンラインストレージのWebサービス。Amazon S3は、Webサービスのインタフェースを介してストレージを提供している。保存できるデータ容量、ファイル数に制約はないが、従量課金のため使った分だけ料金が発生する。\n料金表https://aws.amazon.com/jp/s3/pricing/\n\nAmazon EBS：EC2インスタンスのストレージhttps://aws.amazon.com/jp/ebs/\nAmazon Elastic Block Store (Amazon EBS) は、AWS クラウドの Amazon EC2 インスタンスで使用する永続的なブロックレベルのストレージボリュームを提供する。\n料金体系・Amazon EBS 汎用 SSD (gp2) ボリューム・Amazon EBS プロビジョンド IOPS SSD (io1) ボリューム　・Amazon EBS スループット最適化 HDD (st1) ボリューム・Amazon EBS Cold HDD (sc1) ボリューム　プロビジョニング（リソース割り当て）した容量 (GB/月) で決まり、　そのストレージを解放するまで毎月料金が発生する。\n・Amazon S3 に対する Amazon EBS スナップショット　Amazon S3とのデータ転送による料金を支払う。\n料金表https://aws.amazon.com/jp/ebs/pricing/\n\nAmazon EFS：ファイルストレージhttps://aws.amazon.com/jp/efs/\nAmazon Elastic File System（Amazon EFS）とは、AWS上で使用できる共有ファイルストレージ。AWS上で複数のEC2インスタンスから共有ファイルストレージを使用したい場合に利用する。\n料金表https://aws.amazon.com/jp/efs/pricing/\n\nAmazon Glacier：低コストファイルストレージ頻繁に使用されないデータ（コールドデータ）に最適化された低コスト、高耐久性を備えたストレージサービスで、データのアーカイブや長期バックアップに使用できる。\n料金表https://aws.amazon.com/jp/glacier/pricing/\n\n\nデータベース\nAmazon RDS：リレーショナルデータベースサービスhttps://aws.amazon.com/jp/rds/\nAmazon Relational Database Service (Amazon RDS) を使用すると、クラウド内のリレーショナルデータベースのセットアップ、運用、スケールを行うことが可能。データベースの種類と利用時間で料金を支払う。Amazon Aurora、PostgreSQL、MySQL、MariaDB、Oracle、Microsoft SQL Server の6 つの使い慣れたデータベースエンジンから選択可能。Amazon Auroraとは、MySQL および PostgreSQL と互換性のあるリレーショナルデータベースエンジン。\nDBインスタンスクラスhttps://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html\n料金体系オンデマンドインスタンス or リザーブドインスタンス\n料金表https://aws.amazon.com/jp/rds/pricing/\n\nAmazon DynamoDB：NoSQLデータベースサービスhttps://aws.amazon.com/jp/dynamodb/\nNoSQL（Key-Valueストア）によるデータベースサービス。RDBMSに比べて大量のデータを扱うことができる。（ビックデータの解析、情報のリアルタイム処理など）\n料金表https://aws.amazon.com/jp/dynamodb/pricing/\n\nAmazon ElastiCache：インメモリデータベースサービスhttps://aws.amazon.com/jp/elasticache/\nフルマネージドな分散インメモリデータベースストらサービスキャッシュエンジンとしてmemcachedとRedisがサポートされている。\n料金表https://aws.amazon.com/jp/elasticache/pricing/\n\n\nネットワーク＆ルーティング\nAmazon VPC：仮想プライベートクラウドhttps://aws.amazon.com/jp/vpc/\nAmazon Virtual Private Cloud (Amazon VPC) によりAWSリソースをユーザー定義の仮想ネットワークで起動できる。独自のIPアドレス範囲の選択、サブネットの作成、ルートテーブル、ネットワークゲートウェイの設定など、仮想ネットワーク環境を完全にコントロール可能。\n料金表https://aws.amazon.com/jp/vpc/pricing/\n\nAmazon ELB：ロードバランサhttps://aws.amazon.com/jp/elasticloadbalancing/\nAmazon Elastic Load Balancing（Amazon ELB） は、アプリケーションへのトラフィックを複数のターゲット (Amazon EC2 インスタンス、コンテナ、IP アドレスなど) に自動的に分散する。\n料金表https://aws.amazon.com/jp/elasticloadbalancing/pricing/\n\nAmazon Route 53：クラウドDNSサーバhttps://aws.amazon.com/jp/route53/\nAmazon Route 53 は、可用性と拡張性に優れたドメインネームシステム (DNS) ウェブサービス。\n料金表https://aws.amazon.com/jp/route53/pricing/\n\nAWS Direct Connect：専用線接続サービスhttps://aws.amazon.com/jp/directconnect/\nAWS Direct Connect を使用するとAWS とデータセンター、オフィス、またはコロケーション環境間にプライベート接続を確立することができる。\n料金表https://aws.amazon.com/jp/directconnect/pricing/\n\n\n\n参考資料Amazon Web Servicehttps://aws.amazon.com/jp/\nアマゾンウェブサービスの概要https://d1.awsstatic.com/International/ja_JP/Whitepapers/aws-overview.pdf\n[初心者向け]AWSで開発環境を構築しようhttps://www.slideshare.net/AmazonWebServicesJapan/webinar-aws\n【2018年】AWS全サービスまとめ その1（コンピューティング、ストレージ、データベース、移行、ネットワーキング ＆ コンテンツ配信）https://dev.classmethod.jp/cloud/aws/aws-summary-2018-1/\nSo-netソリューションサービスhttp://www.so-net.ne.jp/solution/service/idc/aws.html\n","dateCreated":"2018-09-15T17:27:38+09:00","dateModified":"2018-10-02T21:45:49+09:00","datePublished":"2018-09-15T17:27:38+09:00","description":"　","headline":"AWS入門：①AWS概要","image":["https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png","cover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/"},"publisher":{"@type":"Organization","name":"Satoshi Ichimaru","sameAs":["https://github.com/s-ichimaru","/atom.xml"]},"url":"https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/","keywords":"クラウド, AWS","thumbnailUrl":"https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"}</script>
+    <meta name="keywords" content="クラウド,AWS">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="AWS入門：①AWS概要">
 <meta property="og:url" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/index.html">
 <meta property="og:site_name" content="Tech-Tutorial">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
-<meta property="og:updated_time" content="2018-09-16T11:12:42.139Z">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="http://drive.google.com/uc?export=view&id=1vNskji1g-ZDjyBGm0JAQpsP4aNz_ailY">
+<meta property="og:updated_time" content="2018-10-02T12:45:49.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="はじめてのAWS：①AWS概要">
-<meta name="twitter:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/2018/09/15/aws-20180915-1/aws_beginner.jpg">
-  
-  <link rel="icon" href="/hexo-site/css/images/favicon.ico">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+<meta name="twitter:title" content="AWS入門：①AWS概要">
+<meta name="twitter:image" content="http://drive.google.com/uc?export=view&id=1vNskji1g-ZDjyBGm0JAQpsP4aNz_ailY">
     
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" />
+    
+    
+        <meta property="og:image" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/cover.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/cover.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/hexo-site/assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css">
+    <!--STYLES END-->
+    
 
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  <link rel="stylesheet" href="/hexo-site/css/style.css">
-
-  <script src="/hexo-site/js/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/hexo-site/css/bootstrap.css" >
-  <link rel="stylesheet" href="/hexo-site/css/fashion.css" >
-  <link rel="stylesheet" href="/hexo-site/css/glyphs.css" >
-
+    
 </head>
 
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
 
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+    
 
-
-  
-
-
-<header id="allheader" class="site-header" role="banner" 
-   >
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/hexo-site/" title="Tech-Tutorial" rel="home"> Tech-Tutorial </a>
-            
-          </h1>
-          
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-
-            <div class="clearfix sf-menu">
-              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
-                    
-              </ul>
-            </div>
-          </nav>
-
-      </div>
-  </div>
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/hexo-site/ ">Tech-Tutorial</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+        </a>
+    
 </header>
 
+            <!-- Define author's picture -->
 
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
         
-          <section id="main" style="float:none;"><article id="post-aws-20180915-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/ "
+                            
+                            title="ホーム"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">ホーム</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-categories"
+                            
+                            title="カテゴリー"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">カテゴリー</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-tags"
+                            
+                            title="タグ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">タグ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/all-archives"
+                            
+                            title="アーカイブ"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">アーカイブ</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="プロフィール"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">プロフィール</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/s-ichimaru" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/hexo-site/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    post-header-cover--partial"
+             style="background-image:url('/hexo-site/2018/09/15/aws-20180915-1/cover.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
+        <h1 class="post-title">
+            AWS入門：①AWS概要
+        </h1>
     
-      <a class="article-gallery-img fancybox" href="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" rel="gallery_cjmo0kkld000blotsdoiyd105">
-        <img src="/hexo-site/2018\09\15\aws-20180915-1\aws_beginner.jpg" itemprop="image">
-      </a>
     
-  </div>
+        <div class="post-meta">
+    <time datetime="2018-09-15T17:27:38+09:00">
+	
+		    2018/09/15
+    	
+    </time>
+    
+        <span>カテゴリー </span>
+        
+    <a class="category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
+
+
+    
 </div>
 
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      はじめてのAWS：①AWS概要
-    </h1>
-  
+</div>
 
-      </header>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
     
-    <div class="article-meta">
-      
-	<a href="/hexo-site/2018/09/15/aws-20180915-1/" class="article-date">
-	  <time datetime="2018-09-15T08:27:38.000Z" itemprop="datePublished">September 15, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
- 
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　</p>
-<a id="more"></a>
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>　<br><a id="more"></a></p>
 <h2 id="AWSとは"><a href="#AWSとは" class="headerlink" title="AWSとは"></a>AWSとは</h2><blockquote><p>Amazon Web Services（アマゾン ウェブ サービス、AWS）とは、Amazon.comにより提供されているクラウドコンピューティングサービス（ウェブサービス）である。これらのサービスは全世界で18の地域に提供されている（2018年現在）。AWSの有名なサービスにAmazon Elastic Compute Cloud (EC2) とAmazon Simple Storage Service (S3) がある。これまでのクライアントが保有していた物理的なサーバファームと比較してAWSは大規模な計算処理能力を速やかに提供出来ることが強みである。</p>
 <footer><strong>wikipedia,</strong><cite><a href="https://ja.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" rel="noopener">ja.wikipedia.org/wiki/Amazon_Web_Services</a></cite></footer></blockquote>
 <p><br></p>
@@ -237,164 +324,532 @@
 <p>【2018年】AWS全サービスまとめ その1（コンピューティング、ストレージ、データベース、移行、ネットワーキング ＆ コンテンツ配信）<br><a href="https://dev.classmethod.jp/cloud/aws/aws-summary-2018-1/" target="_blank" rel="noopener">https://dev.classmethod.jp/cloud/aws/aws-summary-2018-1/</a></p>
 <p>So-netソリューションサービス<br><a href="http://www.so-net.ne.jp/solution/service/idc/aws.html" target="_blank" rel="noopener">http://www.so-net.ne.jp/solution/service/idc/aws.html</a></p>
 
-      
+            
+
+        </div>
     </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexo-site/categories/クラウド/">クラウド</a>, <a class="article-category-link" href="/hexo-site/categories/クラウド/AWS/">AWS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexo-site/tags/クラウド/">クラウド</a></li></ul>
-
-      
+    <div id="post-footer" class="post-footer main-content-wrap">
         
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">タグ</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/AWS/">AWS</a> <a class="tag tag--primary tag--small t-link" href="/hexo-site/tags/クラウド/">クラウド</a>
 
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/hexo-site/2018/09/16/aws-20180916-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+            </div>
         
-          はじめてのAWS：②料金見積
         
-      </div>
-    </a>
-  
-  
-    <a href="/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">IntelliJ IDEAを試してみる</div>
-    </a>
-  
-</nav>
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/16/aws-20180916-1/" data-tooltip="AWS入門：②料金見積" aria-label="前: AWS入門：②料金見積">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/" data-tooltip="IntelliJ IDEAを試してみる" aria-label="次: IntelliJ IDEAを試してみる">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-  
+
+        
+        
+            
+        
+    </div>
 </article>
 
-<!-- Table of Contents -->
 
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AWSとは"><span class="nav-number">1.</span> <span class="nav-text">AWSとは</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AWSサービス概要"><span class="nav-number">2.</span> <span class="nav-text">AWSサービス概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#コンピューティング"><span class="nav-number">3.</span> <span class="nav-text">コンピューティング</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EC2：仮想サーバ"><span class="nav-number">3.1.</span> <span class="nav-text">Amazon EC2：仮想サーバ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-ECS：コンテナ管理サービス"><span class="nav-number">3.2.</span> <span class="nav-text">Amazon ECS：コンテナ管理サービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ストレージ"><span class="nav-number">4.</span> <span class="nav-text">ストレージ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-S3：オンラインストレージサービス"><span class="nav-number">4.1.</span> <span class="nav-text">Amazon S3：オンラインストレージサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EBS：EC2インスタンスのストレージ"><span class="nav-number">4.2.</span> <span class="nav-text">Amazon EBS：EC2インスタンスのストレージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-EFS：ファイルストレージ"><span class="nav-number">4.3.</span> <span class="nav-text">Amazon EFS：ファイルストレージ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Glacier：低コストファイルストレージ"><span class="nav-number">4.4.</span> <span class="nav-text">Amazon Glacier：低コストファイルストレージ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#データベース"><span class="nav-number">5.</span> <span class="nav-text">データベース</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-RDS：リレーショナルデータベースサービス"><span class="nav-number">5.1.</span> <span class="nav-text">Amazon RDS：リレーショナルデータベースサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-DynamoDB：NoSQLデータベースサービス"><span class="nav-number">5.2.</span> <span class="nav-text">Amazon DynamoDB：NoSQLデータベースサービス</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-ElastiCache：インメモリデータベースサービス"><span class="nav-number">5.3.</span> <span class="nav-text">Amazon ElastiCache：インメモリデータベースサービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ネットワーク＆ルーティング"><span class="nav-number">6.</span> <span class="nav-text">ネットワーク＆ルーティング</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-VPC：仮想プライベートクラウド"><span class="nav-number">6.1.</span> <span class="nav-text">Amazon VPC：仮想プライベートクラウド</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-ELB：ロードバランサ"><span class="nav-number">6.2.</span> <span class="nav-text">Amazon ELB：ロードバランサ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amazon-Route-53：クラウドDNSサーバ"><span class="nav-number">6.3.</span> <span class="nav-text">Amazon Route 53：クラウドDNSサーバ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWS-Direct-Connect：専用線接続サービス"><span class="nav-number">6.4.</span> <span class="nav-text">AWS Direct Connect：専用線接続サービス</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考資料"><span class="nav-number">7.</span> <span class="nav-text">参考資料</span></a></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
 
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-</nav> -->
-    <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2018 Tech-Tutorial All Rights Reserved.
-        
-            <span id="busuanzi_container_site_uv">
-              <span id="busuanzi_value_site_uv"></span>
-              <span id="busuanzi_value_site_pv"></span>
-            </span>
-          
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
-      </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Satoshi Ichimaru. All Rights Reserved.
+    </span>
 </footer>
 
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/16/aws-20180916-1/" data-tooltip="AWS入門：②料金見積" aria-label="前: AWS入門：②料金見積">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">前</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/" data-tooltip="IntelliJ IDEAを試してみる" aria-label="次: IntelliJ IDEAを試してみる">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">次</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Facebookで共有">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Twitterで共有">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/" title="Google+で共有">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-<!-- min height -->
 
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-times"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebookで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitterで共有</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+で共有</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+            
+        </div>
+        
 
 
-    <!-- headerblur min height -->
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Satoshi Ichimaru</h4>
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">見つかりませんでした。</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <img class="media-image" src="http://drive.google.com/uc?export=view&amp;id=1ARHVfA7Op9YPsuDrzygq7I2_QxQWm5VG" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/09/dojo-tutorial/">
+                            <h3 class="media-heading">Dojo Toolkit入門</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月9日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <img class="media-image" src="https://cdn.worldvectorlogo.com/logos/intellij-idea-1.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/12/IntelliJ-IDEA-20180912/">
+                            <h3 class="media-heading">IntelliJ IDEAを試してみる</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月12日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/15/aws-20180915-1/">
+                            <h3 class="media-heading">AWS入門：①AWS概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月15日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-1/">
+                            <h3 class="media-heading">AWS入門：②料金見積</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/16/aws-20180916-2/">
+                            <h3 class="media-heading">AWS入門：③アカウント登録</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <img class="media-image" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/17/aws-20180917-1/">
+                            <h3 class="media-heading">AWS入門：④Amazon FC2(Amazon Linux)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <img class="media-image" src="https://www.jhipster.tech/images/logo/logo-jhipster.svg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/22/jhipster-20180922-1/">
+                            <h3 class="media-heading">JHipster入門：概要とシンプルアプリ構築</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/27/docker-20180927-1/">
+                            <h3 class="media-heading">Docker入門：①概要</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/29/docker-20180929-1/">
+                            <h3 class="media-heading">Docker入門：②インストールと基本操作</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月29日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <img class="media-image" src="https://www.docker.com/sites/default/files/mono-vertical.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://s-ichimaru.github.io/hexo-site/2018/09/30/docker-20180930-1/">
+                            <h3 class="media-heading">Docker入門：③ボリュームとバインドマウント</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2018年9月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>　<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="見つかりませんでした。"
+                data-message-one="1件見つかりました。"
+                data-message-other="{n} 件見つかりました。">
+                10 件見つかりました。
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/hexo-site/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/hexo-site/assets/js/script-vufjrm3fmbuttogo1hxuu0w9w0sesk5iyysjuguc2hdhufot9szxg8twijry.min.js"></script>
+<!--SCRIPTS END-->
+
     
-    
-</script>
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
-  <link rel="stylesheet" href="/hexo-site/fancybox/jquery.fancybox.css">
-  <script src="/hexo-site/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('Z7A3XW4R2I', '12db1ad54372045549ef465881c17e743');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
 
 
-<script src="/hexo-site/js/script.js"></script>
-<script src="/hexo-site/js/bootstrap.js"></script>
-<script src="/hexo-site/js/main.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-<!--	
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
--->	
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-</body>
+    </body>
 </html>
